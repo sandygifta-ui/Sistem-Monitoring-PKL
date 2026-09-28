@@ -1,0 +1,23 @@
+# Kredensial database — JANGAN pernah di-commit
+config/database.php
+
+# File contoh boleh di-commit (tanpa password asli)
+!config/database.example.php
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log & temp
+*.log
+/tmp/
+
+# Upload user (opsional, uncomment jika ada fitur upload)
+# assets/uploads/
