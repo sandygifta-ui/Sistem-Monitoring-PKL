@@ -129,10 +129,10 @@ INSERT INTO `siswa`
   (`id`,`user_id`,`nis`,`kelas`,`tempat_pkl`,`alamat_pkl`,
    `nama_pembimbing_industri`,`no_hp_pembimbing_industri`,
    `guru_pembimbing_id`,`tgl_mulai`,`tgl_selesai`) VALUES
-(1, 2, '2324001', 'XII RPL 1', 'Kantor Kelurahan Contoh',
+(1, 2, '2324001', 'XII RPL', 'Kantor Kelurahan Contoh',
    'Jl. Contoh No. 1, Kota Contoh',
    'Bu Sari', '08111111111', 1, '2026-08-03', '2026-11-27'),
-(2, 3, '2324002', 'XII RPL 1', 'Toko Komputer Maju',
+(2, 3, '2324002', 'XII RPL', 'Toko Komputer Maju',
    'Jl. Maju No. 5, Kota Contoh',
    'Pak Andi', '08222222222', 1, '2026-08-03', '2026-11-27');
 
