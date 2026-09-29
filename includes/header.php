@@ -147,9 +147,9 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 <nav class="sidebar" id="sidebar">
   <!-- Brand -->
   <a href="<?= $base ?>/dashboard.php" class="sidebar-brand d-flex align-items-center gap-2 text-decoration-none">
-    <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-      <i class="bi bi-mortarboard-fill text-white"></i>
-    </div>
+    <img src="<?= APP_URL ?>/assets/img/logo-smk.png"
+         alt="Logo SMK"
+         style="width:36px;height:36px;object-fit:contain;flex-shrink:0">
     <div>
       <h6 class="mb-0">SIMONA</h6>
       <small>Monitoring & Nilai PKL</small>
