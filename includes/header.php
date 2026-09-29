@@ -184,6 +184,11 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
          class="nav-link <?= $current_dir === 'laporan' ? 'active' : '' ?>">
         <i class="bi bi-file-earmark-bar-graph"></i> Rekap & Export
       </a>
+      <div class="sidebar-label">Pengaturan</div>
+      <a href="<?= APP_URL ?>/admin/akun/index.php"
+         class="nav-link <?= $current_dir === 'akun' ? 'active' : '' ?>">
+        <i class="bi bi-people-fill"></i> Kelola Akun Guru
+      </a>
 
     <?php else: ?>
       <div class="sidebar-label">Menu Utama</div>
