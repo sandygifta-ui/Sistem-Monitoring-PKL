@@ -1,0 +1,34 @@
+# ── Keamanan dasar Apache ──
+
+# Redirect ke 404 jika halaman tidak ditemukan
+ErrorDocument 404 /Monitoring-PKL/404.php
+
+# Sembunyikan versi Apache & PHP
+ServerSignature Off
+
+# Cegah directory listing (lihat isi folder)
+Options -Indexes
+
+# Cegah akses langsung ke file sensitif
+<FilesMatch "\.(sql|log|bak|ini|sh|env)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Cegah akses ke folder config dan includes langsung
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Blokir akses langsung ke folder config/
+    RewriteRule ^config/ - [F,L]
+
+    # Blokir akses langsung ke folder includes/
+    RewriteRule ^includes/ - [F,L]
+</IfModule>
+
+# Tambah header keamanan
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
