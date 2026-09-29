@@ -25,7 +25,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= e($page_title) ?> — Monitoring PKL</title>
+  <title><?= e($page_title) ?> — SIMONA</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -151,8 +151,8 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       <i class="bi bi-mortarboard-fill text-white"></i>
     </div>
     <div>
-      <h6 class="mb-0">Monitoring PKL</h6>
-      <small><?= $role === 'admin' ? 'Panel Admin' : 'Panel Siswa' ?></small>
+      <h6 class="mb-0">SIMONA</h6>
+      <small>Monitoring & Nilai PKL</small>
     </div>
   </a>
 

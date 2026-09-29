@@ -2,7 +2,7 @@
 
   <!-- Footer -->
   <footer class="text-center text-muted py-3 border-top bg-white" style="font-size:0.8rem">
-    &copy; <?= date('Y') ?> Sistem Monitoring PKL &mdash; SMK
+    &copy; <?= date('Y') ?> SIMONA &mdash; Sistem Monitoring dan Nilai PKL
   </footer>
 
 </div><!-- /.main-wrapper -->

@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — Monitoring PKL</title>
+  <title>Login — SIMONA</title>
 
   <!-- Bootstrap 5 CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -160,8 +160,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-icon">
       <i class="bi bi-mortarboard-fill"></i>
     </div>
-    <h4 class="mb-1 fw-bold">Monitoring PKL</h4>
-    <p class="mb-0 opacity-75 small">Sistem Informasi Praktik Kerja Lapangan</p>
+    <h4 class="mb-1 fw-bold">SIMONA</h4>
+    <p class="mb-0 opacity-75 small">Sistem Monitoring dan Nilai PKL</p>
   </div>
 
   <!-- Body -->

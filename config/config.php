@@ -3,7 +3,7 @@
  * Konfigurasi umum aplikasi.
  */
 
-define('APP_NAME', 'Monitoring PKL');
+define('APP_NAME', 'SIMONA');
 define('APP_URL', 'http://localhost/Monitoring-PKL'); // Ganti saat deploy
 
 // Durasi session (detik): 2 jam
