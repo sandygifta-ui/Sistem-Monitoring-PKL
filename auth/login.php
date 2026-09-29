@@ -157,11 +157,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="login-card card mx-3">
   <!-- Header -->
   <div class="login-header">
-    <div class="login-icon">
-      <i class="bi bi-mortarboard-fill"></i>
-    </div>
-    <h4 class="mb-1 fw-bold">SIMONA</h4>
-    <p class="mb-0 opacity-75 small">Sistem Monitoring dan Nilai PKL</p>
+    <img src="<?= APP_URL ?>/assets/img/logo-smk.png"
+         alt="Logo SMK N 6 Surakarta"
+         style="width:72px;height:72px;object-fit:contain;margin-bottom:0.75rem">
+    <h4 class="mb-0 fw-bold">SIMONA</h4>
+    <p class="mb-1 opacity-75 small fw-semibold">SMK Negeri 6 Surakarta</p>
+    <p class="mb-0 opacity-60 small">Sistem Monitoring dan Nilai PKL</p>
   </div>
 
   <!-- Body -->
