@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <style>
     body {
-      background: linear-gradient(135deg, #1e3a5f 0%, #1a2a45 100%);
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -91,47 +91,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       max-width: 420px;
       border: none;
       border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     }
 
     .login-header {
-      background: linear-gradient(135deg, #F5C400 0%, #e6b800 100%);
+      background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
       border-radius: 16px 16px 0 0;
       padding: 2rem;
       text-align: center;
-      color: #1e3a5f;
+      color: white;
     }
 
-    .login-header h4 { color: #1e3a5f; font-weight: 800; }
-    .login-header p  { color: rgba(30,58,95,0.75); }
+    .login-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2rem;
+    }
 
-    .login-body { padding: 2rem; }
+    .login-body {
+      padding: 2rem;
+    }
 
     .form-control:focus {
-      border-color: #F5C400;
-      box-shadow: 0 0 0 0.2rem rgba(245,196,0,0.25);
+      border-color: #2d6a9f;
+      box-shadow: 0 0 0 0.2rem rgba(45,106,159,0.25);
     }
 
     .btn-login {
-      background: linear-gradient(135deg, #F5C400, #e6b800);
+      background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
       border: none;
-      color: #1e3a5f;
+      color: white;
       padding: 0.65rem;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.5px;
       transition: opacity 0.2s;
     }
 
-    .btn-login:hover { opacity: 0.9; color: #1e3a5f; }
+    .btn-login:hover {
+      opacity: 0.9;
+      color: white;
+    }
 
     .input-group-text {
       background: #f8f9fa;
       border-right: none;
-      color: #F5C400;
     }
 
-    .form-control { border-left: none; }
-    .form-control:not(:focus) { border-left: none; }
+    .form-control {
+      border-left: none;
+    }
+
+    .form-control:not(:focus) {
+      border-left: none;
+    }
   </style>
 </head>
 <body>
