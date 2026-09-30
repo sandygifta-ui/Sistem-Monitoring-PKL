@@ -193,4 +193,4 @@ erDiagram
 
 ---
 
-*Dibuat untuk project akhir semester — SMK*
+*Dibuat untuk project UKK — SMK*
