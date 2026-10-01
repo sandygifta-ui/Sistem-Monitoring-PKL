@@ -33,16 +33,16 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
   <style>
     :root {
       --sidebar-width: 240px;
-      --primary: #1e3a5f;
-      --primary-light: #2d6a9f;
+      --primary: #2E0A4F;
+      --accent: #E11D74;
+      --accent-soft: #7C3AED;
+      --accent-light: rgba(225,29,116,0.1);
+      --accent-soft-light: rgba(124,58,237,0.1);
     }
 
-    body { background: #f4f6f9; font-family: 'Segoe UI', sans-serif; }
+    body { background: #FAF5FF; font-family: 'Segoe UI', sans-serif; }
 
-    /* Animasi fade-in saat masuk dashboard */
-    body {
-      animation: pageFadeIn 0.5s ease forwards;
-    }
+    body { animation: pageFadeIn 0.5s ease forwards; }
 
     @keyframes pageFadeIn {
       from { opacity: 0; transform: translateY(8px); }
@@ -53,59 +53,72 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     .sidebar {
       width: var(--sidebar-width);
       min-height: 100vh;
-      background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+      background: var(--primary);
       position: fixed;
       top: 0; left: 0;
       z-index: 1000;
       transition: transform 0.3s ease;
       display: flex;
       flex-direction: column;
+      box-shadow: 2px 0 16px rgba(46,10,79,0.3);
     }
 
     .sidebar-brand {
       padding: 1.25rem 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       text-decoration: none;
     }
 
     .sidebar-brand h6 { color: #fff; font-weight: 700; margin: 0; font-size: 0.9rem; }
-    .sidebar-brand small { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
+    .sidebar-brand small { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
 
     .sidebar-nav { padding: 0.5rem 0; flex: 1; }
 
     .sidebar-label {
       padding: 0.75rem 1rem 0.25rem;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.25);
     }
 
     .sidebar-nav .nav-link {
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.6);
       padding: 0.6rem 1rem;
-      border-radius: 0;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
       font-size: 0.875rem;
       transition: all 0.2s;
+      margin: 1px 0;
+      border-left: 3px solid transparent;
     }
 
-    .sidebar-nav .nav-link:hover,
-    .sidebar-nav .nav-link.active {
-      background: rgba(255,255,255,0.15);
+    .sidebar-nav .nav-link:hover {
+      background: rgba(225,29,116,0.12);
       color: #fff;
+      border-left-color: rgba(225,29,116,0.5);
     }
 
     .sidebar-nav .nav-link.active {
-      border-left: 3px solid #fff;
+      background: rgba(225,29,116,0.18);
+      color: #fff;
+      border-left-color: var(--accent);
     }
+
+    .sidebar-nav .nav-link i {
+      color: #c084fc;
+      font-size: 1rem;
+      width: 18px;
+      text-align: center;
+    }
+
+    .sidebar-nav .nav-link.active i { color: var(--accent); }
 
     .sidebar-footer {
       padding: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.07);
     }
 
     /* ── Main content ── */
@@ -119,7 +132,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     /* ── Topbar ── */
     .topbar {
       background: #fff;
-      border-bottom: 1px solid #e9ecef;
+      border-bottom: 1px solid #ede9fe;
       padding: 0.75rem 1.5rem;
       display: flex;
       align-items: center;
@@ -127,13 +140,88 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       position: sticky;
       top: 0;
       z-index: 999;
+      box-shadow: 0 1px 4px rgba(124,58,237,0.07);
     }
 
-    .topbar .page-heading { font-weight: 700; color: var(--primary); margin: 0; font-size: 1.1rem; }
+    .topbar .page-heading {
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0;
+      font-size: 1.1rem;
+    }
 
     .content-area { padding: 1.5rem; flex: 1; }
 
-    /* ── Responsive: sidebar collapse di mobile ── */
+    /* ── Bootstrap overrides ── */
+    .btn-primary {
+      background: var(--accent) !important;
+      border-color: var(--accent) !important;
+      color: #fff !important;
+      font-weight: 600 !important;
+    }
+    .btn-primary:hover {
+      background: #be185d !important;
+      border-color: #be185d !important;
+    }
+    .btn-outline-primary {
+      color: var(--accent) !important;
+      border-color: var(--accent) !important;
+    }
+    .btn-outline-primary:hover {
+      background: var(--accent) !important;
+      color: #fff !important;
+    }
+    .btn-outline-secondary {
+      color: var(--accent-soft) !important;
+      border-color: var(--accent-soft) !important;
+    }
+    .btn-outline-secondary:hover {
+      background: var(--accent-soft) !important;
+      color: #fff !important;
+    }
+
+    /* Badge */
+    .badge.bg-primary  { background: var(--accent) !important; }
+    .badge.bg-warning  { background: var(--accent-soft) !important; color: #fff !important; }
+    .badge.bg-success  { background: #059669 !important; }
+    .badge.bg-danger   { background: #dc2626 !important; }
+    .badge.bg-light    { background: #f3e8ff !important; color: var(--primary) !important; }
+
+    /* Link */
+    a { color: var(--accent-soft); }
+    a:hover { color: var(--accent); }
+
+    /* Ikon kartu */
+    .icon-accent {
+      background: var(--accent-light);
+      color: var(--accent);
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .icon-soft {
+      background: var(--accent-soft-light);
+      color: var(--accent-soft);
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* Kartu */
+    .card { border-radius: 12px !important; }
+
+    /* Form focus */
+    .form-control:focus, .form-select:focus {
+      border-color: var(--accent-soft) !important;
+      box-shadow: 0 0 0 0.2rem rgba(124,58,237,0.15) !important;
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); }
       .sidebar.show { transform: translateX(0); }
