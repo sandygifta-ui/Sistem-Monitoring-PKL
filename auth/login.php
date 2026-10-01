@@ -134,13 +134,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       max-width: 1100px;
       position: relative;
       border-radius: 24px;
-      overflow: hidden;
+      overflow: visible;
       box-shadow: 0 12px 48px rgba(0,0,0,0.15);
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .main-card.show { opacity:1; transform:translateY(0); }
+
+    /* Foto tetap tumpul */
+    .card-bg {
+      border-radius: 24px;
+    }
 
     /* Foto gedung */
     .card-bg {
@@ -154,6 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .card-overlay {
       position: absolute;
       inset: 0;
+      border-radius: 24px;
       background: linear-gradient(
         to right,
         rgba(10,20,50,0.55) 0%,
@@ -166,10 +172,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .card-stats {
       position: absolute;
       bottom: 2rem;
-      left: 2rem;
+      left: -1.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+      z-index: 5;
     }
 
     .stat-pill {
