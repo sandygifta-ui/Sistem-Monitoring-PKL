@@ -335,7 +335,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </div>
   <div style="font-size:0.8rem;color:#6c757d">
-    Sistem Monitoring dan Nilai PKL
+    <a href="https://smkn6solo.sch.id/" target="_blank" rel="noopener"
+       class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+      <i class="bi bi-globe2 me-1"></i>Selengkapnya
+    </a>
   </div>
 </nav>
 
