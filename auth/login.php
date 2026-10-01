@@ -142,17 +142,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     .main-card.show { opacity:1; transform:translateY(0); }
 
-    /* Foto tetap tumpul */
-    .card-bg {
-      border-radius: 24px;
-    }
-
     /* Foto gedung */
     .card-bg {
       width: 100%;
-      height: 480px;
+      height: 380px;
       object-fit: cover;
       display: block;
+      border-radius: 24px;
     }
 
     /* Overlay gelap tipis di atas foto */
@@ -207,14 +203,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .login-card {
       position: absolute;
       top: 50%;
-      right: 2.5rem;
+      right: -1.5rem;
       transform: translateY(-50%);
       width: 320px;
       background: #fff;
       border-radius: 16px;
       padding: 1.75rem;
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      opacity: 0;
+      transition: opacity 0.6s ease, right 0.6s ease;
     }
+    .login-card.show { opacity: 1; }
 
     .login-card .lc-title {
       font-weight: 800;
