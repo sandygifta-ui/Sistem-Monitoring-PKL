@@ -52,10 +52,11 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     /* ── Sidebar ── */
     .sidebar {
       width: var(--sidebar-width);
-      min-height: 100vh;
+      min-height: 100%;
+      height: 100%;
       background: var(--primary);
       position: fixed;
-      top: 0; left: 0;
+      top: 0; left: 0; bottom: 0;
       z-index: 1000;
       transition: transform 0.3s ease;
       display: flex;
