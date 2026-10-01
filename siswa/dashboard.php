@@ -50,6 +50,27 @@ $stmt_jurnal = $db->prepare("
 $stmt_jurnal->execute([$siswa_id]);
 $jurnal_terbaru = $stmt_jurnal->fetchAll();
 
+// Data grafik: jurnal per minggu (6 minggu terakhir)
+$stmt_chart = $db->prepare("
+    SELECT
+        DATE_FORMAT(MIN(tanggal), '%d %b') AS label,
+        COUNT(*) AS total,
+        SUM(status_verifikasi='diverifikasi') AS diverifikasi,
+        SUM(status_verifikasi='menunggu')     AS menunggu,
+        SUM(status_verifikasi='ditolak')      AS ditolak
+    FROM jurnal_harian
+    WHERE siswa_id = ? AND tanggal >= DATE_SUB(CURDATE(), INTERVAL 6 WEEK)
+    GROUP BY YEARWEEK(tanggal, 1)
+    ORDER BY YEARWEEK(tanggal, 1)
+");
+$stmt_chart->execute([$siswa_id]);
+$chart_data = $stmt_chart->fetchAll();
+
+$c_labels = json_encode(array_column($chart_data, 'label'));
+$c_verif  = json_encode(array_map('intval', array_column($chart_data, 'diverifikasi')));
+$c_tunggu = json_encode(array_map('intval', array_column($chart_data, 'menunggu')));
+$c_tolak  = json_encode(array_map('intval', array_column($chart_data, 'ditolak')));
+
 $page_title = 'Dashboard';
 require_once __DIR__ . '/../includes/header.php';
 ?>
@@ -130,6 +151,23 @@ require_once __DIR__ . '/../includes/header.php';
   </div>
 </div>
 
+<!-- Grafik jurnal per minggu -->
+<div class="card border-0 shadow-sm mb-4">
+  <div class="card-header bg-white py-3">
+    <h6 class="mb-0 fw-bold">
+      <i class="bi bi-bar-chart-line me-2" style="color:#E11D74"></i>
+      Jurnal per Minggu (6 Minggu Terakhir)
+    </h6>
+  </div>
+  <div class="card-body">
+    <?php if (empty($chart_data)): ?>
+      <div class="text-center text-muted py-3 small">Belum ada data jurnal.</div>
+    <?php else: ?>
+      <canvas id="chartJurnalSiswa" height="100"></canvas>
+    <?php endif; ?>
+  </div>
+</div>
+
 <!-- Jurnal terbaru -->
 <div class="card border-0 shadow-sm">
   <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
@@ -186,5 +224,32 @@ require_once __DIR__ . '/../includes/header.php';
     <?php endif; ?>
   </div>
 </div>
+
+<?php if (!empty($chart_data)): ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>
+new Chart(document.getElementById('chartJurnalSiswa'), {
+  type: 'bar',
+  data: {
+    labels: <?= $c_labels ?>,
+    datasets: [
+      { label: 'Diverifikasi', data: <?= $c_verif ?>,  backgroundColor: '#10B981', borderRadius: 4 },
+      { label: 'Menunggu',     data: <?= $c_tunggu ?>, backgroundColor: '#F59E0B', borderRadius: 4 },
+      { label: 'Ditolak',      data: <?= $c_tolak ?>,  backgroundColor: '#EF4444', borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false } },
+      y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+    }
+  }
+});
+</script>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
