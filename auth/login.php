@@ -113,8 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /* Teks VISKA di atas gambar */
     .viska-section {
-      width: 100%;
-      max-width: 1100px;
+      width: 85%;
+      max-width: 960px;
       margin-bottom: 1.25rem;
     }
 
@@ -130,8 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /* ── MAIN CARD: gambar + form ── */
     .main-card {
-      width: 100%;
-      max-width: 1100px;
+      width: 85%;
+      max-width: 960px;
       position: relative;
       border-radius: 24px;
       overflow: visible;
