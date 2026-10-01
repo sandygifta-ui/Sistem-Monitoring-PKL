@@ -42,13 +42,6 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 
     body { background: #FAF5FF; font-family: 'Segoe UI', sans-serif; }
 
-    body { animation: pageFadeIn 0.5s ease forwards; }
-
-    @keyframes pageFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
     /* ── Sidebar ── */
     .sidebar {
       width: var(--sidebar-width);
@@ -155,11 +148,11 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     .content-area {
       padding: 1.5rem;
       flex: 1;
-      animation: contentFadeIn 0.35s ease forwards;
+      animation: contentFadeIn 0.5s ease forwards;
     }
 
     @keyframes contentFadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 

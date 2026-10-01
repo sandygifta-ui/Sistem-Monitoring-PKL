@@ -43,11 +43,11 @@ function toggleSidebar() {
       // Fade out konten
       document.querySelector('.content-area').style.opacity = '0';
       document.querySelector('.content-area').style.transform = 'translateY(-8px)';
-      document.querySelector('.content-area').style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      document.querySelector('.content-area').style.transition = 'opacity 0.35s ease, transform 0.35s ease';
 
       setTimeout(function() {
         window.location.href = target;
-      }, 200);
+      }, 350);
     });
   });
 })();
