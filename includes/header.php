@@ -151,7 +151,17 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       font-size: 1.1rem;
     }
 
-    .content-area { padding: 1.5rem; flex: 1; }
+    /* Content area animasi masuk */
+    .content-area {
+      padding: 1.5rem;
+      flex: 1;
+      animation: contentFadeIn 0.35s ease forwards;
+    }
+
+    @keyframes contentFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     /* ── Bootstrap overrides ── */
     .btn-primary {
