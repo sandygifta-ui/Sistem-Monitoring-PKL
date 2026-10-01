@@ -39,6 +39,16 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 
     body { background: #f4f6f9; font-family: 'Segoe UI', sans-serif; }
 
+    /* Animasi fade-in saat masuk dashboard */
+    body {
+      animation: pageFadeIn 0.5s ease forwards;
+    }
+
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* ── Sidebar ── */
     .sidebar {
       width: var(--sidebar-width);
@@ -244,6 +254,12 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       </button>
       <ul class="dropdown-menu dropdown-menu-end shadow-sm">
         <li><h6 class="dropdown-header"><?= e($user['username']) ?></h6></li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <a class="dropdown-item" href="<?= APP_URL ?>/profil.php">
+            <i class="bi bi-person-circle me-2"></i>Profil Saya
+          </a>
+        </li>
         <li><hr class="dropdown-divider"></li>
         <li>
           <a class="dropdown-item text-danger" href="<?= APP_URL ?>/auth/logout.php"
