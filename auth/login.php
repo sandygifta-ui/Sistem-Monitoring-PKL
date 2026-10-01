@@ -435,8 +435,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   window.addEventListener('load', function () {
+    // Kalau ada error login, tampilkan semua langsung tanpa animasi
+    const hasError = <?= !empty($error) ? 'true' : 'false' ?>;
 
-    // 1. VISKA kata per kata — santai, jeda 250ms per kata
+    if (hasError) {
+      document.querySelectorAll('.viska-word').forEach(w => w.classList.add('show'));
+      document.querySelector('.main-card').classList.add('show');
+      document.querySelectorAll('.stat-pill').forEach(p => p.classList.add('show'));
+      document.querySelector('.login-card').classList.add('show');
+      return;
+    }
+
+    // Animasi normal kalau tidak ada error
+    // 1. VISKA kata per kata
     const words = document.querySelectorAll('.viska-word');
     words.forEach(function(word, i) {
       setTimeout(function() {
@@ -444,13 +455,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }, 300 + (i * 250));
     });
 
-    // 2. Foto gedung muncul setelah VISKA selesai
+    // 2. Foto gedung
     const totalViska = 300 + (words.length * 250) + 200;
     setTimeout(function() {
       document.querySelector('.main-card').classList.add('show');
     }, totalViska);
 
-    // 3. Stats kiri muncul setelah foto
+    // 3. Stats kiri
     const pills = document.querySelectorAll('.stat-pill');
     pills.forEach(function(pill, i) {
       setTimeout(function() {
@@ -458,7 +469,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }, totalViska + 400 + (i * 200));
     });
 
-    // 4. Form login muncul paling terakhir
+    // 4. Form login terakhir
     const formDelay = totalViska + 400 + (pills.length * 200) + 300;
     setTimeout(function() {
       document.querySelector('.login-card').classList.add('show');
