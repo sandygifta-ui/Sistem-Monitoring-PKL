@@ -116,19 +116,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       width: 100%;
       max-width: 1100px;
       margin-bottom: 1.25rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s ease 0.4s forwards;
     }
 
     .viska-section h1 {
       font-size: clamp(1.6rem, 3.5vw, 2.8rem);
       font-weight: 800;
       color: #1e3a5f;
-      line-height: 1.2;
+      line-height: 1.4;
     }
 
-    .viska-section h1 .yellow { color: #F5C400; }
+    .viska-word.yellow { color: #F5C400; }
+    .viska-word        { color: #1e3a5f; margin-right: 0.3rem; }
 
     /* ── MAIN CARD: gambar + form ── */
     .main-card {
@@ -140,8 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       box-shadow: 0 12px 48px rgba(0,0,0,0.15);
       opacity: 0;
       transform: translateY(30px);
-      animation: fadeUp 0.7s ease 0.6s forwards;
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
+    .main-card.show { opacity:1; transform:translateY(0); }
 
     /* Foto gedung */
     .card-bg {
@@ -280,6 +279,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       to { opacity:1; transform:translateY(0); }
     }
 
+    /* VISKA kata per kata */
+    .viska-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .viska-word.show { opacity:1; transform:translateY(0); }
+
+    /* Stats */
+    .stat-pill {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stat-pill.show { opacity:1; transform:translateX(0); }
+
     /* Mobile */
     @media (max-width: 768px) {
       .hero { padding: 1rem; }
@@ -323,8 +339,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- Teks VISKA -->
   <div class="viska-section">
     <h1>
-      <span class="yellow">Visioner</span> Inovatif<br>
-      <span class="yellow">Sinergi</span> Kompeten <span class="yellow">Amanah</span>
+      <span class="viska-word yellow">Visioner</span>
+      <span class="viska-word">Inovatif</span><br>
+      <span class="viska-word yellow">Sinergi</span>
+      <span class="viska-word">Kompeten</span>
+      <span class="viska-word yellow">Amanah</span>
     </h1>
   </div>
 
@@ -342,7 +361,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="card-stats">
       <div class="stat-pill">
         <span class="num">VISKA</span>
-        <span class="lbl">Nilai SMK N 6 Surakarta</span>
+        <span class="lbl">SMK Negeri 6 Surakarta</span>
       </div>
       <div class="stat-pill">
         <span class="num">SIMONA</span>
@@ -406,6 +425,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  window.addEventListener('load', function () {
+
+    // 1. VISKA kata per kata — santai, jeda 250ms per kata
+    const words = document.querySelectorAll('.viska-word');
+    words.forEach(function(word, i) {
+      setTimeout(function() {
+        word.classList.add('show');
+      }, 300 + (i * 250));
+    });
+
+    // 2. Foto gedung muncul setelah VISKA selesai
+    const totalViska = 300 + (words.length * 250) + 200;
+    setTimeout(function() {
+      document.querySelector('.main-card').classList.add('show');
+    }, totalViska);
+
+    // 3. Stats kiri muncul setelah foto
+    const pills = document.querySelectorAll('.stat-pill');
+    pills.forEach(function(pill, i) {
+      setTimeout(function() {
+        pill.classList.add('show');
+      }, totalViska + 400 + (i * 200));
+    });
+
+    // 4. Form login muncul paling terakhir
+    const formDelay = totalViska + 400 + (pills.length * 200) + 300;
+    setTimeout(function() {
+      document.querySelector('.login-card').classList.add('show');
+    }, formDelay);
+  });
+
   // Toggle password
   document.getElementById('togglePassword').addEventListener('click', function () {
     const pwd  = document.getElementById('password');
