@@ -126,8 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .school-logo img {
-      width: 48px;
-      height: 48px;
+      width: 72px;
+      height: 72px;
       object-fit: contain;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
     }
@@ -354,7 +354,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="side-right" id="sideRight">
   <div style="text-align:center;margin-bottom:1.5rem">
     <img src="<?= APP_URL ?>/assets/img/logo-smk.png"
-         alt="Logo" style="width:56px;height:56px;object-fit:contain">
+         alt="Logo" style="width:90px;height:90px;object-fit:contain">
   </div>
 
   <div class="form-title">Selamat Datang 👋</div>
