@@ -147,8 +147,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       width: 100%;
       height: 380px;
       object-fit: cover;
+      object-position: center 30%;
       display: block;
       border-radius: 24px;
+      image-rendering: -webkit-optimize-contrast;
     }
 
     /* Overlay gelap tipis di atas foto */
@@ -157,10 +159,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       inset: 0;
       border-radius: 24px;
       background: linear-gradient(
-        to right,
-        rgba(10,20,50,0.55) 0%,
-        rgba(10,20,50,0.15) 55%,
-        rgba(10,20,50,0.05) 100%
+        120deg,
+        rgba(11,27,58,0.82) 0%,
+        rgba(11,27,58,0.55) 40%,
+        rgba(11,27,58,0.25) 70%,
+        rgba(11,27,58,0.08) 100%
       );
     }
 
@@ -500,6 +503,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     overlay.style.pointerEvents = 'all';
   });
 </script>
-<script src="<?= APP_URL ?>/assets/js/validasi.js"></script>
 </body>
 </html>
