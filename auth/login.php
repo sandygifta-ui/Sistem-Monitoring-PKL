@@ -389,7 +389,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
       <?php endif; ?>
 
-      <form method="POST" novalidate id="loginForm">
+      <form method="POST" novalidate id="loginForm" data-validate>
         <?= csrf_input() ?>
 
         <div class="mb-3">
@@ -399,6 +399,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="username" class="form-control"
                    placeholder="Username"
                    value="<?= e($_POST['username'] ?? '') ?>"
+                   data-validasi="required"
+                   data-label="Username"
                    required autocomplete="username">
           </div>
         </div>
@@ -409,6 +411,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span class="input-group-text"><i class="bi bi-lock"></i></span>
             <input type="password" name="password" id="password"
                    class="form-control" placeholder="Password"
+                   data-validasi="required|min:6"
+                   data-label="Password"
                    required autocomplete="current-password">
             <button class="btn btn-outline-secondary btn-sm" type="button"
                     id="togglePassword" tabindex="-1">
@@ -496,5 +500,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     overlay.style.pointerEvents = 'all';
   });
 </script>
+<script src="<?= APP_URL ?>/assets/js/validasi.js"></script>
 </body>
 </html>
