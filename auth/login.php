@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
+      background: #FAF5FF;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .nav-brand-text .title {
       font-weight: 800;
       font-size: 1.1rem;
-      color: #1e3a5f;
+      color: #2E0A4F;
       line-height: 1.1;
     }
 
@@ -125,8 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       line-height: 1.4;
     }
 
-    .viska-word.yellow { color: #F5C400; }
-    .viska-word        { color: #1e3a5f; margin-right: 0.3rem; }
+    .viska-word.yellow { color: #E11D74; }
+    .viska-word        { color: #2E0A4F; margin-right: 0.3rem; }
 
     /* ── MAIN CARD: gambar + form ── */
     .main-card {
@@ -160,10 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       border-radius: 24px;
       background: linear-gradient(
         120deg,
-        rgba(11,27,58,0.82) 0%,
-        rgba(11,27,58,0.55) 40%,
-        rgba(11,27,58,0.25) 70%,
-        rgba(11,27,58,0.08) 100%
+        rgba(46,10,79,0.65) 0%,
+        rgba(46,10,79,0.35) 40%,
+        rgba(46,10,79,0.12) 70%,
+        rgba(46,10,79,0.02) 100%
       );
     }
 
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .stat-pill {
-      background: rgba(10,20,50,0.82);
+      background: rgba(46,10,79,0.85);
       backdrop-filter: blur(6px);
       color: white;
       padding: 0.6rem 1.1rem;
@@ -187,12 +187,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       display: inline-flex;
       flex-direction: column;
       min-width: 190px;
+      border-left: 3px solid #E11D74;
     }
 
     .stat-pill .num {
       font-size: 1.4rem;
       font-weight: 800;
-      color: #F5C400;
+      color: #E11D74;
       line-height: 1;
     }
 
@@ -221,7 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .login-card .lc-title {
       font-weight: 800;
       font-size: 1.15rem;
-      color: #1e3a5f;
+      color: #2E0A4F;
       margin-bottom: 0.2rem;
     }
 
@@ -231,24 +232,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       margin-bottom: 1.25rem;
     }
 
-    .form-label { font-size: 0.82rem; font-weight: 600; color: #1e3a5f; margin-bottom: 4px; }
+    .form-label { font-size: 0.82rem; font-weight: 600; color: #2E0A4F; margin-bottom: 4px; }
 
     .form-control:focus {
-      border-color: #1e3a5f;
-      box-shadow: 0 0 0 0.18rem rgba(30,58,95,0.15);
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 0.18rem rgba(124,58,237,0.15);
     }
 
     .input-group-text {
       background: #f8f9fa;
       border-right: none;
-      color: #1e3a5f;
+      color: #7C3AED;
       font-size: 0.85rem;
     }
 
     .form-control { border-left: none; font-size: 0.88rem; }
 
     .btn-masuk {
-      background: #1e3a5f;
+      background: #E11D74;
       border: none;
       color: white;
       padding: 0.6rem;
@@ -260,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       margin-top: 0.5rem;
     }
 
-    .btn-masuk:hover  { background: #2d6a9f; color: white; }
+    .btn-masuk:hover  { background: #be185d; color: white; }
     .btn-masuk:active { transform: scale(0.98); }
 
     .demo-info {
@@ -273,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /* Transition overlay */
     .login-transition {
       position: fixed; inset: 0;
-      background: #1e3a5f;
+      background: #2E0A4F;
       z-index: 9999;
       opacity: 0;
       pointer-events: none;
@@ -363,7 +364,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="main-card">
 
     <!-- Foto gedung -->
-    <img src="<?= APP_URL ?>/assets/img/gedung-smk.png"
+    <img src="<?= APP_URL ?>/assets/img/gedung-smk.jpeg"
          class="card-bg" alt="Gedung SMK N 6 Surakarta">
 
     <!-- Overlay -->
