@@ -67,7 +67,7 @@ require_once __DIR__ . '/../includes/header.php';
 <!-- Kartu statistik -->
 <div class="row g-3 mb-4">
   <div class="col-6 col-md-3">
-    <div class="card border-0 shadow-sm h-100">
+    <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
         <div class="icon-accent"><i class="bi bi-people-fill"></i></div>
         <div>
@@ -78,7 +78,7 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
   </div>
   <div class="col-6 col-md-3">
-    <div class="card border-0 shadow-sm h-100">
+    <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
         <div class="icon-soft"><i class="bi bi-hourglass-split text-warning"></i></div>
         <div>
@@ -89,7 +89,7 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
   </div>
   <div class="col-6 col-md-3">
-    <div class="card border-0 shadow-sm h-100">
+    <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
         <div style="background:#d1fae5;border-radius:12px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
           <i class="bi bi-journal-check fs-5 text-success"></i>
@@ -102,7 +102,7 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
   </div>
   <div class="col-6 col-md-3">
-    <div class="card border-0 shadow-sm h-100">
+    <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
         <div style="background:#ede9fe;border-radius:12px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
           <i class="bi bi-award-fill fs-5" style="color:#7C3AED"></i>

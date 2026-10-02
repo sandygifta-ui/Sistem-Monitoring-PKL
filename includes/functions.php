@@ -27,7 +27,8 @@ function redirect(string $url): void
  */
 function set_flash(string $type, string $message): void
 {
-    $_SESSION['flash'] = ['type' => $type, 'message' => $message];
+    $_SESSION['flash']       = ['type' => $type, 'message' => $message];
+    $_SESSION['flash_toast'] = ['type' => $type, 'message' => $message];
 }
 
 /**

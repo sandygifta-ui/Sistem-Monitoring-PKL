@@ -219,10 +219,64 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     /* Kartu */
     .card { border-radius: 12px !important; }
 
+    /* Hover effect kartu */
+    .card.hover-lift {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
+    }
+    .card.hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(46,10,79,0.15) !important;
+    }
+
     /* Form focus */
     .form-control:focus, .form-select:focus {
       border-color: var(--accent-soft) !important;
       box-shadow: 0 0 0 0.2rem rgba(124,58,237,0.15) !important;
+    }
+
+    /* ── Toast notification ── */
+    .toast-container-custom {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast-custom {
+      background: #fff;
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 280px;
+      max-width: 360px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      border-left: 4px solid var(--accent);
+    }
+
+    .toast-custom.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .toast-custom.toast-success { border-left-color: #10B981; }
+    .toast-custom.toast-danger  { border-left-color: #EF4444; }
+    .toast-custom.toast-warning { border-left-color: #F59E0B; }
+    .toast-custom.toast-info    { border-left-color: #7C3AED; }
+
+    .toast-custom .toast-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .toast-custom .toast-msg  { font-size: 0.85rem; color: #374151; flex: 1; }
+    .toast-custom .toast-close {
+      background: none; border: none; padding: 0;
+      color: #9ca3af; cursor: pointer; font-size: 1rem;
     }
 
     /* ── Responsive ── */
