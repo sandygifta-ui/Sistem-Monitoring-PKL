@@ -121,6 +121,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow: visible;
     }
 
     /* ── Topbar ── */
@@ -149,6 +150,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       padding: 1.5rem;
       flex: 1;
       animation: contentFadeIn 0.5s ease forwards;
+      overflow: visible;
     }
 
     @keyframes contentFadeIn {
