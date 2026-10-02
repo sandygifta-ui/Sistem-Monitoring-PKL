@@ -50,6 +50,15 @@ function showToast(message, type = 'success') {
   }, 3500);
 }
 
+// Reset pointer-events setelah animasi content selesai
+const contentArea = document.querySelector('.content-area');
+if (contentArea) {
+  contentArea.addEventListener('animationend', function() {
+    this.style.pointerEvents = 'auto';
+    this.style.opacity = '1';
+  });
+}
+
 // Auto-show toast jika ada flash message dari PHP
 <?php
 $flash = $_SESSION['flash_toast'] ?? null;
@@ -70,10 +79,12 @@ if ($flash) {
 
       e.preventDefault();
       const target = href;
+      const content = document.querySelector('.content-area');
 
-      document.querySelector('.content-area').style.opacity = '0';
-      document.querySelector('.content-area').style.transform = 'translateY(-8px)';
-      document.querySelector('.content-area').style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      content.style.opacity = '0';
+      content.style.transform = 'translateY(-8px)';
+      content.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      content.style.pointerEvents = 'none';
 
       setTimeout(function() {
         window.location.href = target;

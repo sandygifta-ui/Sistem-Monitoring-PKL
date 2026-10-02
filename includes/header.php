@@ -149,7 +149,8 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     .content-area {
       padding: 1.5rem;
       flex: 1;
-      animation: contentFadeIn 0.5s ease forwards;
+      opacity: 0;
+      animation: contentFadeIn 0.5s ease 0.05s forwards;
       overflow: visible;
     }
 
