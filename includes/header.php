@@ -393,27 +393,100 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
     </div>
 
     <!-- Dropdown user -->
-    <div class="dropdown">
-      <button class="btn btn-sm btn-light dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
-        <i class="bi bi-person-circle"></i>
-        <span class="d-none d-sm-inline"><?= e($user['nama']) ?></span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-        <li><h6 class="dropdown-header"><?= e($user['username']) ?></h6></li>
-        <li><hr class="dropdown-divider"></li>
-        <li>
-          <a class="dropdown-item" href="<?= APP_URL ?>/profil.php">
-            <i class="bi bi-person-circle me-2"></i>Profil Saya
-          </a>
-        </li>
-        <li><hr class="dropdown-divider"></li>
-        <li>
-          <a class="dropdown-item text-danger" href="<?= APP_URL ?>/auth/logout.php"
-             onclick="return confirm('Yakin ingin keluar?')">
-            <i class="bi bi-box-arrow-right me-2"></i>Keluar
-          </a>
-        </li>
-      </ul>
+    <div class="d-flex align-items-center gap-2">
+
+      <!-- Lonceng notifikasi (khusus admin) -->
+      <?php if ($role === 'admin'):
+        $db_bell = get_db();
+        $pending_count = $db_bell->query("SELECT COUNT(*) FROM jurnal_harian WHERE status_verifikasi='menunggu'")->fetchColumn();
+      ?>
+      <div class="dropdown">
+        <button class="btn btn-sm btn-light position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-bell fs-5"></i>
+          <?php if ($pending_count > 0): ?>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style="font-size:0.6rem">
+              <?= $pending_count > 9 ? '9+' : $pending_count ?>
+            </span>
+          <?php endif; ?>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow" style="min-width:300px;max-width:340px">
+          <li>
+            <h6 class="dropdown-header d-flex justify-content-between align-items-center">
+              <span>Jurnal Menunggu Verifikasi</span>
+              <?php if ($pending_count > 0): ?>
+                <span class="badge bg-danger rounded-pill"><?= $pending_count ?></span>
+              <?php endif; ?>
+            </h6>
+          </li>
+          <li><hr class="dropdown-divider my-0"></li>
+          <?php
+          $bell_jurnal = $db_bell->query("
+            SELECT j.id, j.tanggal, j.kegiatan, u.nama AS nama_siswa
+            FROM jurnal_harian j
+            JOIN siswa s ON j.siswa_id = s.id
+            JOIN users u ON s.user_id = u.id
+            WHERE j.status_verifikasi = 'menunggu'
+            ORDER BY j.created_at DESC
+            LIMIT 5
+          ")->fetchAll();
+          ?>
+          <?php if (empty($bell_jurnal)): ?>
+            <li>
+              <div class="text-center py-3 text-muted small">
+                <i class="bi bi-check-circle text-success d-block fs-4 mb-1"></i>
+                Tidak ada jurnal pending
+              </div>
+            </li>
+          <?php else: ?>
+            <?php foreach ($bell_jurnal as $bj): ?>
+            <li>
+              <a class="dropdown-item py-2" href="<?= APP_URL ?>/admin/jurnal/index.php">
+                <div class="fw-semibold small"><?= e($bj['nama_siswa']) ?></div>
+                <div class="text-muted" style="font-size:0.75rem;white-space:normal">
+                  <?= e(mb_substr($bj['kegiatan'], 0, 60)) ?>...
+                </div>
+                <div class="text-muted" style="font-size:0.7rem"><?= format_tanggal($bj['tanggal']) ?></div>
+              </a>
+            </li>
+            <?php endforeach; ?>
+            <?php if ($pending_count > 5): ?>
+            <li><hr class="dropdown-divider my-0"></li>
+            <li>
+              <a class="dropdown-item text-center small" href="<?= APP_URL ?>/admin/jurnal/index.php?status=menunggu">
+                Lihat semua <?= $pending_count ?> jurnal →
+              </a>
+            </li>
+            <?php endif; ?>
+          <?php endif; ?>
+        </ul>
+      </div>
+      <?php endif; ?>
+
+      <!-- Dropdown akun -->
+      <div class="dropdown">
+        <button class="btn btn-sm btn-light dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle"></i>
+          <span class="d-none d-sm-inline"><?= e($user['nama']) ?></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+          <li><h6 class="dropdown-header"><?= e($user['username']) ?></h6></li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item" href="<?= APP_URL ?>/profil.php">
+              <i class="bi bi-person-circle me-2"></i>Profil Saya
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item text-danger" href="<?= APP_URL ?>/auth/logout.php"
+               onclick="return confirm('Yakin ingin keluar?')">
+              <i class="bi bi-box-arrow-right me-2"></i>Keluar
+            </a>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
