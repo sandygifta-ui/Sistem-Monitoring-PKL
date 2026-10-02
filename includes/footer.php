@@ -75,7 +75,8 @@ if ($flash) {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('javascript')
-          || this.dataset.bsToggle || this.getAttribute('onclick')) return;
+          || this.dataset.bsToggle || this.getAttribute('onclick')
+          || this.closest('[data-bs-toggle]')) return;
 
       e.preventDefault();
       const target = href;

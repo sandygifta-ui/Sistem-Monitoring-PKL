@@ -282,8 +282,7 @@ require_once __DIR__ . '/../../includes/header.php';
         <button type="button" class="btn btn-success" id="btnVerif">
           <i class="bi bi-check-circle me-1"></i>Verifikasi
         </button>
-      </div>
-    </div>
+      </div>    </div>
   </div>
 </div>
 
@@ -317,14 +316,24 @@ document.getElementById('modalVerif').addEventListener('show.bs.modal', function
 document.getElementById('btnVerif').addEventListener('click', function () {
   if (!confirm('Verifikasi jurnal ini?')) return;
   document.getElementById('mv-aksi').value = 'diverifikasi';
-  document.getElementById('formVerif').submit();
+  // Tutup modal dulu, baru submit
+  const modal = bootstrap.Modal.getInstance(document.getElementById('modalVerif'));
+  if (modal) modal.hide();
+  setTimeout(function() {
+    document.getElementById('formVerif').submit();
+  }, 300);
 });
 
 // Tombol Tolak
 document.getElementById('btnTolak').addEventListener('click', function () {
   if (!confirm('Tolak jurnal ini?')) return;
   document.getElementById('mv-aksi').value = 'ditolak';
-  document.getElementById('formVerif').submit();
+  // Tutup modal dulu, baru submit
+  const modal = bootstrap.Modal.getInstance(document.getElementById('modalVerif'));
+  if (modal) modal.hide();
+  setTimeout(function() {
+    document.getElementById('formVerif').submit();
+  }, 300);
 });
 </script>
 
