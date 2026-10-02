@@ -18,23 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $catatan   = trim($_POST['catatan_admin'] ?? '');
 
     if ($jurnal_id > 0 && in_array($aksi, ['diverifikasi', 'ditolak'])) {
-        $stmt = $db->prepare("
-            UPDATE jurnal_harian
-            SET status_verifikasi = ?, catatan_admin = ?
-            WHERE id = ?
-        ");
+        $stmt = $db->prepare("UPDATE jurnal_harian SET status_verifikasi = ?, catatan_admin = ? WHERE id = ?");
         $stmt->execute([$aksi, $catatan ?: null, $jurnal_id]);
-
         $label = $aksi === 'diverifikasi' ? 'diverifikasi' : 'ditolak';
         set_flash('success', "Jurnal berhasil $label.");
     }
 
-    // Redirect kembali ke halaman yang sama (dengan filter yang sama)
     $qs = $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '';
     redirect(APP_URL . '/admin/jurnal/index.php' . $qs);
 }
 
-// ── Parameter filter & pagination ──
 $cari       = trim($_GET['cari'] ?? '');
 $status     = trim($_GET['status'] ?? '');
 $tgl_dari   = trim($_GET['tgl_dari'] ?? '');
@@ -43,57 +36,33 @@ $page       = max(1, (int)($_GET['page'] ?? 1));
 $per_page   = 10;
 $offset     = ($page - 1) * $per_page;
 
-// ── Bangun WHERE ──
 $where  = 'WHERE 1=1';
 $params = [];
 
-if ($cari !== '') {
-    $where   .= ' AND u.nama LIKE ?';
-    $params[] = "%$cari%";
-}
-if ($status !== '') {
-    $where   .= ' AND j.status_verifikasi = ?';
-    $params[] = $status;
-}
-if ($tgl_dari !== '') {
-    $where   .= ' AND j.tanggal >= ?';
-    $params[] = $tgl_dari;
-}
-if ($tgl_sampai !== '') {
-    $where   .= ' AND j.tanggal <= ?';
-    $params[] = $tgl_sampai;
-}
+if ($cari !== '')       { $where .= ' AND u.nama LIKE ?';          $params[] = "%$cari%"; }
+if ($status !== '')     { $where .= ' AND j.status_verifikasi = ?'; $params[] = $status; }
+if ($tgl_dari !== '')   { $where .= ' AND j.tanggal >= ?';          $params[] = $tgl_dari; }
+if ($tgl_sampai !== '') { $where .= ' AND j.tanggal <= ?';          $params[] = $tgl_sampai; }
 
-// Total
-$count_sql = "
-    SELECT COUNT(*)
-    FROM jurnal_harian j
-    JOIN siswa s ON j.siswa_id = s.id
-    JOIN users u ON s.user_id  = u.id
-    $where
-";
-$stmt = $db->prepare($count_sql);
+$stmt = $db->prepare("SELECT COUNT(*) FROM jurnal_harian j JOIN siswa s ON j.siswa_id=s.id JOIN users u ON s.user_id=u.id $where");
 $stmt->execute($params);
 $total       = (int)$stmt->fetchColumn();
 $total_pages = max(1, (int)ceil($total / $per_page));
 
-// Data jurnal
-$sql = "
+$stmt = $db->prepare("
     SELECT j.id, j.tanggal, j.kegiatan, j.kendala,
-           j.status_verifikasi, j.catatan_admin, j.created_at,
-           u.nama AS nama_siswa, s.kelas, s.tempat_pkl, s.id AS siswa_id
+           j.status_verifikasi, j.catatan_admin,
+           u.nama AS nama_siswa, s.kelas, s.tempat_pkl
     FROM jurnal_harian j
     JOIN siswa s ON j.siswa_id = s.id
     JOIN users u ON s.user_id  = u.id
     $where
-    ORDER BY j.tanggal DESC, j.created_at DESC
+    ORDER BY j.tanggal DESC, j.id DESC
     LIMIT $per_page OFFSET $offset
-";
-$stmt = $db->prepare($sql);
+");
 $stmt->execute($params);
 $jurnal_list = $stmt->fetchAll();
 
-// Hitung badge pending untuk info
 $pending = $db->query("SELECT COUNT(*) FROM jurnal_harian WHERE status_verifikasi='menunggu'")->fetchColumn();
 
 $page_title = 'Jurnal Harian';
@@ -106,8 +75,7 @@ require_once __DIR__ . '/../../includes/header.php';
     <form method="GET" class="row g-2 align-items-end">
       <div class="col-12 col-md-3">
         <input type="text" name="cari" class="form-control form-control-sm"
-               placeholder="Cari nama siswa..."
-               value="<?= e($cari) ?>">
+               placeholder="Cari nama siswa..." value="<?= e($cari) ?>">
       </div>
       <div class="col-6 col-md-2">
         <select name="status" class="form-select form-select-sm">
@@ -118,17 +86,13 @@ require_once __DIR__ . '/../../includes/header.php';
         </select>
       </div>
       <div class="col-6 col-md-2">
-        <input type="date" name="tgl_dari" class="form-control form-control-sm"
-               value="<?= e($tgl_dari) ?>" title="Dari tanggal">
+        <input type="date" name="tgl_dari" class="form-control form-control-sm" value="<?= e($tgl_dari) ?>">
       </div>
       <div class="col-6 col-md-2">
-        <input type="date" name="tgl_sampai" class="form-control form-control-sm"
-               value="<?= e($tgl_sampai) ?>" title="Sampai tanggal">
+        <input type="date" name="tgl_sampai" class="form-control form-control-sm" value="<?= e($tgl_sampai) ?>">
       </div>
       <div class="col-6 col-md-3 d-flex gap-2">
-        <button type="submit" class="btn btn-primary btn-sm">
-          <i class="bi bi-search me-1"></i>Cari
-        </button>
+        <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-search me-1"></i>Cari</button>
         <a href="<?= APP_URL ?>/admin/jurnal/index.php" class="btn btn-outline-secondary btn-sm">Reset</a>
       </div>
     </form>
@@ -149,8 +113,7 @@ require_once __DIR__ . '/../../includes/header.php';
   <div class="card-body p-0">
     <?php if (empty($jurnal_list)): ?>
       <div class="text-center py-5 text-muted">
-        <i class="bi bi-journal-x fs-3 d-block mb-2"></i>
-        Tidak ada jurnal ditemukan.
+        <i class="bi bi-journal-x fs-3 d-block mb-2"></i>Tidak ada jurnal ditemukan.
       </div>
     <?php else: ?>
       <div class="table-responsive">
@@ -181,7 +144,7 @@ require_once __DIR__ . '/../../includes/header.php';
                     </div>
                   <?php endif; ?>
                   <?php if ($j['catatan_admin']): ?>
-                    <div class="small text-primary text-truncate">
+                    <div class="small text-truncate" style="color:#7C3AED">
                       <i class="bi bi-chat-left-text me-1"></i><?= e($j['catatan_admin']) ?>
                     </div>
                   <?php endif; ?>
@@ -189,10 +152,7 @@ require_once __DIR__ . '/../../includes/header.php';
               </td>
               <td><?= badge_status($j['status_verifikasi']) ?></td>
               <td class="text-center">
-                <!-- Tombol Detail & Verifikasi -->
-                <button type="button" class="btn btn-sm btn-outline-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modalVerif"
+                <button type="button" class="btn btn-sm btn-outline-primary btn-detail"
                   data-id="<?= $j['id'] ?>"
                   data-nama="<?= e($j['nama_siswa']) ?>"
                   data-tanggal="<?= e(format_tanggal($j['tanggal'])) ?>"
@@ -219,121 +179,111 @@ require_once __DIR__ . '/../../includes/header.php';
   </div>
 </div>
 
-<!-- ══ Modal Verifikasi ══ -->
-<div class="modal fade" id="modalVerif" tabindex="-1" aria-labelledby="modalVerifLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="modalVerifLabel">
-          <i class="bi bi-journal-check me-2"></i>Detail Jurnal
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+<!-- ══ Offcanvas Detail Jurnal (geser dari kanan, TANPA backdrop gelap) ══ -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasVerif"
+     data-bs-backdrop="false" data-bs-scroll="true" style="width:420px;z-index:1045">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-bold">
+      <i class="bi bi-journal-check me-2" style="color:#E11D74"></i>Detail Jurnal
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+
+    <div class="row g-2 mb-3">
+      <div class="col-6">
+        <div class="text-muted small">Siswa</div>
+        <div class="fw-semibold" id="mv-nama"></div>
+      </div>
+      <div class="col-6">
+        <div class="text-muted small">Tanggal</div>
+        <div class="fw-semibold" id="mv-tanggal"></div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="text-muted small mb-1">Kegiatan</div>
+      <div class="p-3 bg-light rounded" id="mv-kegiatan" style="white-space:pre-wrap;font-size:0.9rem"></div>
+    </div>
+
+    <div class="mb-3" id="mv-kendala-wrap">
+      <div class="text-muted small mb-1">Kendala</div>
+      <div class="p-3 bg-light rounded" id="mv-kendala" style="white-space:pre-wrap;font-size:0.9rem"></div>
+    </div>
+
+    <div class="mb-3">
+      <div class="text-muted small mb-1">Status Saat Ini</div>
+      <div id="mv-status"></div>
+    </div>
+
+    <form method="POST" id="formVerif">
+      <?= csrf_input() ?>
+      <input type="hidden" name="jurnal_id" id="mv-jurnal-id">
+      <input type="hidden" name="aksi"      id="mv-aksi">
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold small">
+          Catatan untuk Siswa <span class="text-muted fw-normal">(opsional)</span>
+        </label>
+        <textarea name="catatan_admin" id="mv-catatan" class="form-control" rows="3"
+                  placeholder="Tulis catatan atau alasan penolakan..."></textarea>
       </div>
 
-      <div class="modal-body">
-        <!-- Info jurnal -->
-        <div class="mb-3">
-          <div class="row g-2">
-            <div class="col-md-6">
-              <div class="text-muted small">Siswa</div>
-              <div class="fw-semibold" id="mv-nama"></div>
-            </div>
-            <div class="col-md-6">
-              <div class="text-muted small">Tanggal</div>
-              <div class="fw-semibold" id="mv-tanggal"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <div class="text-muted small mb-1">Kegiatan</div>
-          <div class="p-3 bg-light rounded" id="mv-kegiatan" style="white-space:pre-wrap"></div>
-        </div>
-
-        <div class="mb-3" id="mv-kendala-wrap">
-          <div class="text-muted small mb-1">Kendala</div>
-          <div class="p-3 bg-light rounded" id="mv-kendala" style="white-space:pre-wrap"></div>
-        </div>
-
-        <div class="mb-3">
-          <div class="text-muted small mb-1">Status Saat Ini</div>
-          <div id="mv-status"></div>
-        </div>
-
-        <!-- Form verifikasi -->
-        <form method="POST" id="formVerif">
-          <?= csrf_input() ?>
-          <input type="hidden" name="jurnal_id" id="mv-jurnal-id">
-          <input type="hidden" name="aksi" id="mv-aksi">
-
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Catatan untuk Siswa <span class="text-muted fw-normal">(opsional)</span></label>
-            <textarea name="catatan_admin" id="mv-catatan-input" class="form-control" rows="2"
-                      placeholder="Tulis catatan atau alasan penolakan..."></textarea>
-          </div>
-        </form>
-      </div>
-
-      <div class="modal-footer gap-2">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-        <button type="button" class="btn btn-danger" id="btnTolak">
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-secondary flex-grow-1" data-bs-dismiss="offcanvas">
+          Tutup
+        </button>
+        <button type="button" class="btn btn-danger flex-grow-1" id="btnTolak">
           <i class="bi bi-x-circle me-1"></i>Tolak
         </button>
-        <button type="button" class="btn btn-success" id="btnVerif">
+        <button type="button" class="btn btn-success flex-grow-1" id="btnVerif">
           <i class="bi bi-check-circle me-1"></i>Verifikasi
         </button>
-      </div>    </div>
+      </div>
+    </form>
   </div>
 </div>
 
 <script>
-// Isi modal saat dibuka
-document.getElementById('modalVerif').addEventListener('show.bs.modal', function (e) {
-  const btn = e.relatedTarget;
-  document.getElementById('mv-nama').textContent     = btn.dataset.nama;
-  document.getElementById('mv-tanggal').textContent  = btn.dataset.tanggal;
-  document.getElementById('mv-kegiatan').textContent = btn.dataset.kegiatan;
-  document.getElementById('mv-jurnal-id').value      = btn.dataset.id;
+const offcanvasEl = document.getElementById('offcanvasVerif');
+const offcanvas   = new bootstrap.Offcanvas(offcanvasEl);
 
-  // Kendala
-  const kendala = btn.dataset.kendala;
-  document.getElementById('mv-kendala-wrap').style.display = kendala ? '' : 'none';
-  document.getElementById('mv-kendala').textContent = kendala;
+const statusMap = {
+  'menunggu':     '<span class="badge bg-warning text-dark">Menunggu</span>',
+  'diverifikasi': '<span class="badge bg-success">Diverifikasi</span>',
+  'ditolak':      '<span class="badge bg-danger">Ditolak</span>',
+};
 
-  // Status badge
-  const statusMap = {
-    'menunggu':     '<span class="badge bg-warning text-dark">Menunggu</span>',
-    'diverifikasi': '<span class="badge bg-success">Diverifikasi</span>',
-    'ditolak':      '<span class="badge bg-danger">Ditolak</span>',
-  };
-  document.getElementById('mv-status').innerHTML = statusMap[btn.dataset.status] || btn.dataset.status;
+// Buka offcanvas saat tombol mata diklik
+document.querySelectorAll('.btn-detail').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.getElementById('mv-nama').textContent    = this.dataset.nama;
+    document.getElementById('mv-tanggal').textContent = this.dataset.tanggal;
+    document.getElementById('mv-kegiatan').textContent= this.dataset.kegiatan;
+    document.getElementById('mv-jurnal-id').value     = this.dataset.id;
+    document.getElementById('mv-catatan').value       = this.dataset.catatan;
 
-  // Isi catatan yang sudah ada
-  document.getElementById('mv-catatan-input').value = btn.dataset.catatan;
+    const kendala = this.dataset.kendala;
+    document.getElementById('mv-kendala-wrap').style.display = kendala ? '' : 'none';
+    document.getElementById('mv-kendala').textContent = kendala;
+    document.getElementById('mv-status').innerHTML = statusMap[this.dataset.status] || this.dataset.status;
+
+    offcanvas.show();
+  });
 });
 
-// Tombol Verifikasi
-document.getElementById('btnVerif').addEventListener('click', function () {
+// Verifikasi
+document.getElementById('btnVerif').addEventListener('click', function() {
   if (!confirm('Verifikasi jurnal ini?')) return;
   document.getElementById('mv-aksi').value = 'diverifikasi';
-  // Tutup modal dulu, baru submit
-  const modal = bootstrap.Modal.getInstance(document.getElementById('modalVerif'));
-  if (modal) modal.hide();
-  setTimeout(function() {
-    document.getElementById('formVerif').submit();
-  }, 300);
+  document.getElementById('formVerif').submit();
 });
 
-// Tombol Tolak
-document.getElementById('btnTolak').addEventListener('click', function () {
+// Tolak
+document.getElementById('btnTolak').addEventListener('click', function() {
   if (!confirm('Tolak jurnal ini?')) return;
   document.getElementById('mv-aksi').value = 'ditolak';
-  // Tutup modal dulu, baru submit
-  const modal = bootstrap.Modal.getInstance(document.getElementById('modalVerif'));
-  if (modal) modal.hide();
-  setTimeout(function() {
-    document.getElementById('formVerif').submit();
-  }, 300);
+  document.getElementById('formVerif').submit();
 });
 </script>
 
