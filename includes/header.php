@@ -121,7 +121,6 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: visible;
     }
 
     /* ── Topbar ── */
