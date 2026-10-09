@@ -50,15 +50,6 @@ function showToast(message, type = 'success') {
   }, 3500);
 }
 
-// Reset pointer-events setelah animasi content selesai
-const contentArea = document.querySelector('.content-area');
-if (contentArea) {
-  contentArea.addEventListener('animationend', function() {
-    this.style.pointerEvents = 'auto';
-    this.style.opacity = '1';
-  });
-}
-
 // Auto-show toast jika ada flash message dari PHP
 <?php
 $flash = $_SESSION['flash_toast'] ?? null;
@@ -68,30 +59,8 @@ if ($flash) {
 }
 ?>
 
-// ── Animasi smooth saat pindah halaman ──
-(function() {
-  document.querySelectorAll('.sidebar-nav .nav-link, .topbar a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('javascript')
-          || this.dataset.bsToggle || this.getAttribute('onclick')
-          || this.closest('[data-bs-toggle]')) return;
-
-      e.preventDefault();
-      const target = href;
-      const content = document.querySelector('.content-area');
-
-      content.style.opacity = '0';
-      content.style.transform = 'translateY(-8px)';
-      content.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-      content.style.pointerEvents = 'none';
-
-      setTimeout(function() {
-        window.location.href = target;
-      }, 350);
-    });
-  });
-})();
+// ── Animasi smooth saat pindah halaman dihapus ──
+// (menyebabkan pointer-events: none permanen, tombol tidak bisa diklik)
 </script>
 </body>
 </html>
