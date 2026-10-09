@@ -287,15 +287,100 @@ require_once __DIR__ . '/../../includes/header.php';
   </div>
 </div>
 
+<!-- Kop surat (hanya muncul saat print) -->
+<div id="kop-surat" style="display:none">
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;border-bottom:3px solid #2E0A4F;padding-bottom:12px">
+    <img src="<?= APP_URL ?>/assets/img/logo-smk.png"
+         style="width:70px;height:70px;object-fit:contain">
+    <div>
+      <div style="font-size:11pt;font-weight:bold;color:#2E0A4F;letter-spacing:0.5px">
+        PEMERINTAH DAERAH KOTA SURAKARTA
+      </div>
+      <div style="font-size:16pt;font-weight:800;color:#2E0A4F;line-height:1.2">
+        SMK NEGERI 6 SURAKARTA
+      </div>
+      <div style="font-size:8.5pt;color:#555;margin-top:2px">
+        Jl. LU. Adisucipto No.38, Surakarta &bull; Telp. (0271) 726036
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-bottom:12px">
+    <div style="font-size:13pt;font-weight:bold;text-transform:uppercase;letter-spacing:1px">
+      Rekap Jurnal & Nilai PKL
+    </div>
+    <div style="font-size:9pt;color:#555">
+      <?php if ($kelas): ?>Kelas: <?= e($kelas) ?> &bull; <?php endif; ?>
+      Dicetak: <?= format_tanggal(date('Y-m-d')) ?>
+    </div>
+  </div>
+</div>
+
 <!-- CSS Print -->
 <style>
 @media print {
-  .sidebar, .topbar, .btn, form, nav, .card-header .text-muted { display: none !important; }
+  /* Sembunyikan elemen yang tidak perlu */
+  .sidebar, .topbar, .btn, form,
+  .card-header .text-muted,
+  #tabel-rekap .card-header .d-flex,
+  .toast-container-custom { display: none !important; }
+
+  /* Tampilkan kop surat */
+  #kop-surat { display: block !important; }
+
+  /* Layout */
   .main-wrapper { margin-left: 0 !important; }
   .content-area { padding: 0 !important; }
-  .card { box-shadow: none !important; border: 1px solid #dee2e6 !important; }
-  body { font-size: 11px; }
+
+  /* Kartu */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+  }
+
+  /* Tabel */
+  body { font-size: 10px; }
+  table { border-collapse: collapse !important; }
+  th, td { border: 1px solid #ccc !important; padding: 4px 6px !important; }
+  thead { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; }
+
+  /* Badge status */
+  .badge { border: 1px solid #999 !important; padding: 2px 6px !important; }
+
+  /* Hindari terpotong di tengah baris */
+  tr { page-break-inside: avoid; }
+
+  /* Footer tanda tangan */
+  .ttd-print { display: block !important; }
+}
+
+/* Tanda tangan — hanya muncul saat print */
+.ttd-print {
+  display: none;
+  margin-top: 32px;
 }
 </style>
+
+<!-- Tanda tangan (hanya print) -->
+<div class="ttd-print">
+  <div style="display:flex;justify-content:space-between;margin-top:24px">
+    <div style="text-align:center;width:220px">
+      <div>Mengetahui,</div>
+      <div style="font-weight:bold">Kepala Sekolah</div>
+      <div style="margin-top:60px;border-top:1px solid #000;padding-top:4px">
+        (____________________________)
+      </div>
+      <div style="font-size:9pt">NIP.</div>
+    </div>
+    <div style="text-align:center;width:220px">
+      <div>Surakarta, <?= format_tanggal(date('Y-m-d')) ?></div>
+      <div style="font-weight:bold">Guru Pembimbing</div>
+      <div style="margin-top:60px;border-top:1px solid #000;padding-top:4px">
+        (____________________________)
+      </div>
+      <div style="font-size:9pt">NIP.</div>
+    </div>
+  </div>
+</div>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
