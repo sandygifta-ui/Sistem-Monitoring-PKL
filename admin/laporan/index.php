@@ -320,8 +320,7 @@ require_once __DIR__ . '/../../includes/header.php';
 @media print {
   /* Sembunyikan elemen yang tidak perlu */
   .sidebar, .topbar, .btn, form,
-  .card-header .text-muted,
-  #tabel-rekap .card-header .d-flex,
+  #tabel-rekap .card-header,
   .toast-container-custom { display: none !important; }
 
   /* Tampilkan kop surat */
