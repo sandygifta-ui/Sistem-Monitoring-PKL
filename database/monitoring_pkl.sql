@@ -4,12 +4,6 @@
 -- Cara    : Buka phpMyAdmin → tab Import → pilih file ini → Go
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS `monitoring_pkl`
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE `monitoring_pkl`;
-
 -- ============================================================
 -- 1. TABEL users
 --    Akun login: admin (guru pembimbing) dan siswa
