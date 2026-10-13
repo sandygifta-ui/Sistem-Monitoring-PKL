@@ -430,10 +430,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </button>
       </form>
 
-      <div class="demo-info">
-        Demo: <code>admin</code>/<code>admin123</code>
-        &bull; <code>siswa1</code>/<code>siswa123</code>
-      </div>
+      <div class="demo-info"></div>
     </div>
 
   </div><!-- /.main-card -->
