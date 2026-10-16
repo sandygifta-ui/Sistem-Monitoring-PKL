@@ -45,7 +45,7 @@ function get_flash(): string
     unset($_SESSION['flash']);
 
     $type    = e($flash['type']);
-    $message = e($flash['message']);
+    $message = $flash['message']; // Boleh HTML (strong, dll)
 
     return '<div class="alert alert-' . $type . ' alert-dismissible fade show" role="alert">'
          . $message
