@@ -86,9 +86,15 @@ require_once __DIR__ . '/../../includes/header.php';
 <div class="card border-0 shadow-sm">
   <div class="card-body p-0">
     <?php if (empty($jurnal_list)): ?>
-      <div class="text-center py-5 text-muted">
-        <i class="bi bi-journal-x fs-3 d-block mb-2"></i>
-        Belum ada jurnal. Mulai catat kegiatan PKL kamu!
+      <div class="text-center py-5">
+        <div style="width:80px;height:80px;background:#f3e8ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+          <i class="bi bi-journal-x" style="font-size:2rem;color:#7C3AED"></i>
+        </div>
+        <h5 class="fw-bold mb-1" style="color:#2E0A4F">Belum ada jurnal</h5>
+        <p class="text-muted mb-3">Mulai catat kegiatan PKL kamu hari ini!</p>
+        <a href="<?= APP_URL ?>/siswa/jurnal/tambah.php" class="btn btn-primary px-4">
+          <i class="bi bi-plus-lg me-1"></i>Tambah Jurnal Pertama
+        </a>
       </div>
     <?php else: ?>
       <!-- Desktop: tabel -->
