@@ -34,6 +34,14 @@ function csrf_input(): string
 }
 
 /**
+ * Alias csrf_input() — untuk kompatibilitas.
+ */
+function csrf_field(): string
+{
+    return csrf_input();
+}
+
+/**
  * Verifikasi token CSRF dari request POST.
  * Jika tidak valid, hentikan eksekusi dengan pesan error 403.
  */

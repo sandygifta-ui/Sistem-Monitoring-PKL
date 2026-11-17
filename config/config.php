@@ -4,7 +4,7 @@
  */
 
 define('APP_NAME', 'SIMONA');
-define('APP_URL', 'http://localhost/Monitoring-PKL'); // Ganti saat deploy
+define('APP_URL', 'http://simona-monitoring.web.id');
 
 // Durasi session (detik): 2 jam
 define('SESSION_LIFETIME', 7200);
@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_set_cookie_params([
         'lifetime' => SESSION_LIFETIME,
         'path'     => '/',
-        'secure'   => false, // Ganti true jika pakai HTTPS
+        'secure'   => false,
         'httponly' => true,
         'samesite' => 'Lax',
     ]);

@@ -142,6 +142,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     .main-card.show { opacity:1; transform:translateY(0); }
 
+    /* Wrapper foto — agar card-stats absolute terhadap foto, bukan main-card */
+    .card-photo-wrap {
+      position: relative;
+      width: 100%;
+    }
+
     /* Foto gedung */
     .card-bg {
       width: 100%;
@@ -171,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .card-stats {
       position: absolute;
       bottom: 2rem;
-      left: -1.5rem;
+      left: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
@@ -189,7 +195,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       min-width: 190px;
       border-left: 3px solid #E11D74;
     }
-
     .stat-pill .num {
       font-size: 1.4rem;
       font-weight: 800;
@@ -309,18 +314,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /* Mobile */
     @media (max-width: 768px) {
       .hero { padding: 1rem; }
-      .card-bg { height: 260px; }
+      .main-card {
+        position: relative;
+      }
+      .card-bg { 
+        height: 260px;
+        position: relative;
+      }
+      /* Di mobile, stats muncul di dalam foto (absolute terhadap foto) */
+      .card-stats {
+        position: absolute;
+        bottom: 0.75rem;
+        left: 0.75rem;
+        right: auto;
+        z-index: 5;
+      }
+      .stat-pill {
+        min-width: 120px;
+        padding: 0.4rem 0.75rem;
+      }
+      .stat-pill .num { font-size: 1rem; }
+      .stat-pill .lbl { font-size: 0.65rem; }
+      
+      /* Form login di mobile jadi relative (di bawah foto) */
       .login-card {
         position: relative;
-        top: auto; right: auto;
+        top: auto; 
+        right: auto;
         transform: none;
         width: 100%;
         border-radius: 0 0 16px 16px;
         box-shadow: none;
         border-top: 1px solid #f0f2f5;
       }
-      .card-stats { bottom: 1rem; left: 1rem; }
-      .stat-pill { min-width: 140px; }
     }
   </style>
 </head>
@@ -364,21 +390,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="main-card">
 
     <!-- Foto gedung -->
-    <img src="<?= APP_URL ?>/assets/img/gedung-smk.jpeg"
-         class="card-bg" alt="Gedung SMK N 6 Surakarta">
+    <div class="card-photo-wrap">
+      <img src="<?= APP_URL ?>/assets/img/gedung-smk.jpeg"
+           class="card-bg" alt="Gedung SMK N 6 Surakarta">
 
-    <!-- Overlay -->
-    <div class="card-overlay"></div>
+      <!-- Overlay -->
+      <div class="card-overlay"></div>
 
-    <!-- Stats kiri -->
-    <div class="card-stats">
-      <div class="stat-pill">
-        <span class="num">VISKA</span>
-        <span class="lbl">SMK Negeri 6 Surakarta</span>
-      </div>
-      <div class="stat-pill">
-        <span class="num">SIMONA</span>
-        <span class="lbl">Sistem Monitoring & Nilai PKL</span>
+      <!-- Stats kiri -->
+      <div class="card-stats">
+        <div class="stat-pill">
+          <span class="num">VISKA</span>
+          <span class="lbl">SMK Negeri 6 Surakarta</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num">SIMONA</span>
+          <span class="lbl">Sistem Monitoring & Nilai PKL</span>
+        </div>
       </div>
     </div>
 
