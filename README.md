@@ -1,11 +1,23 @@
 # 🌐 SIMONA — Sistem Monitoring dan Nilai PKL
 
-\<p align="center">
-&#x20; \<img src="[https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge\&logo=php\&logoColor=white)" alt="PHP">
-&#x20; \<img src="[https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge\&logo=mysql\&logoColor=white)" alt="MySQL">
-&#x20; \<img src="[https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge\&logo=bootstrap\&logoColor=white)" alt="Bootstrap">
-&#x20; \<img src="[https://img.shields.io/badge/Deployment-Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white](https://img.shields.io/badge/Deployment-Azure-0078D4?style=for-the-badge\&logo=microsoftazure\&logoColor=white)" alt="Azure">
-\</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
+  <img src="https://img.shields.io/badge/Deployment-Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure">
+</p>
+
+<p align="center">
+  <b>Sistem Informasi Monitoring Praktik Kerja Lapangan Siswa SMK</b>
+  <br>
+  Platform digital untuk monitoring kegiatan, verifikasi jurnal, dan pengelolaan nilai PKL.
+</p>
+
+<p align="center">
+  <a href="https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php">
+    <strong>🚀 KUNJUNGI WEBSITE SIMONA</strong>
+  </a>
+</p>
 
 \<p align="center">
 &#x20; \<b>Sistem Informasi Monitoring Praktik Kerja Lapangan Siswa SMK\</b>
