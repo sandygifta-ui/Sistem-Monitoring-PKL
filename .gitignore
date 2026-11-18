@@ -1,6 +1,9 @@
 # Kredensial database — JANGAN pernah di-commit
 config/database.php
 
+# Export database lokal — berisi data asli, jangan di-commit
+database/monitoring_pkl_latest.sql
+
 # File contoh boleh di-commit (tanpa password asli)
 !config/database.example.php
 
