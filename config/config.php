@@ -4,7 +4,7 @@
  */
 
 define('APP_NAME', 'SIMONA');
-define('APP_URL', 'http://simona-monitoring.web.id');
+define('APP_URL', 'http://simona-monitoring.local');
 
 // Durasi session (detik): 2 jam
 define('SESSION_LIFETIME', 7200);

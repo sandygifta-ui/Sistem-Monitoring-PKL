@@ -167,8 +167,8 @@ require_once __DIR__ . '/../../includes/header.php';
         <div class="col-md-3">
           <label class="form-label">Kelas <span class="text-danger">*</span></label>
           <input type="text" name="kelas" class="form-control"
-                 placeholder="XII RPL 1"
-                 value="<?= e($input['kelas'] ?? '') ?>" required>
+                 placeholder="XII RPL"
+                 value="<?= e($input['kelas'] ?? 'XII RPL') ?>" required>
         </div>
       </div>
 

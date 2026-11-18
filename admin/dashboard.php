@@ -69,7 +69,9 @@ require_once __DIR__ . '/../includes/header.php';
   <div class="col-6 col-md-3">
     <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
-        <div class="icon-accent"><i class="bi bi-people-fill"></i></div>
+        <div style="width:48px;height:48px;background:#E11D74;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="bi bi-people-fill text-white fs-5"></i>
+        </div>
         <div>
           <div class="fs-3 fw-bold" style="color:#2E0A4F"><?= $total_siswa ?></div>
           <div class="text-muted small">Total Siswa</div>
@@ -80,7 +82,9 @@ require_once __DIR__ . '/../includes/header.php';
   <div class="col-6 col-md-3">
     <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
-        <div class="icon-soft"><i class="bi bi-hourglass-split text-warning"></i></div>
+        <div style="width:48px;height:48px;background:#F59E0B;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="bi bi-hourglass-split text-white fs-5"></i>
+        </div>
         <div>
           <div class="fs-3 fw-bold text-warning"><?= $jurnal_pending ?></div>
           <div class="text-muted small">Jurnal Pending</div>
@@ -91,8 +95,8 @@ require_once __DIR__ . '/../includes/header.php';
   <div class="col-6 col-md-3">
     <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
-        <div style="background:#d1fae5;border-radius:12px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <i class="bi bi-journal-check fs-5 text-success"></i>
+        <div style="width:48px;height:48px;background:#10B981;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="bi bi-journal-check text-white fs-5"></i>
         </div>
         <div>
           <div class="fs-3 fw-bold text-success"><?= $total_jurnal ?></div>
@@ -104,8 +108,8 @@ require_once __DIR__ . '/../includes/header.php';
   <div class="col-6 col-md-3">
     <div class="card border-0 shadow-sm h-100 hover-lift">
       <div class="card-body d-flex align-items-center gap-3">
-        <div style="background:#ede9fe;border-radius:12px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <i class="bi bi-award-fill fs-5" style="color:#7C3AED"></i>
+        <div style="width:48px;height:48px;background:#7C3AED;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="bi bi-award-fill text-white fs-5"></i>
         </div>
         <div>
           <div class="fs-3 fw-bold" style="color:#7C3AED"><?= $sudah_dinilai ?></div>

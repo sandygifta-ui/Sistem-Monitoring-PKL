@@ -28,8 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // ── Filter & pagination ──
+$valid_status = ['menunggu', 'diverifikasi', 'ditolak'];
+
 $cari       = trim($_GET['cari'] ?? '');
-$status     = trim($_GET['status'] ?? '');
+$status_raw = trim($_GET['status'] ?? '');
+$status     = in_array($status_raw, $valid_status, true) ? $status_raw : '';
 $tgl_dari   = trim($_GET['tgl_dari'] ?? '');
 $tgl_sampai = trim($_GET['tgl_sampai'] ?? '');
 $page       = max(1, (int)($_GET['page'] ?? 1));
@@ -38,10 +41,10 @@ $offset     = ($page - 1) * $per_page;
 
 $where  = 'WHERE 1=1';
 $params = [];
-if ($cari !== '')       { $where .= ' AND u.nama LIKE ?';          $params[] = "%$cari%"; }
-if ($status !== '')     { $where .= ' AND j.status_verifikasi = ?'; $params[] = $status; }
-if ($tgl_dari !== '')   { $where .= ' AND j.tanggal >= ?';          $params[] = $tgl_dari; }
-if ($tgl_sampai !== '') { $where .= ' AND j.tanggal <= ?';          $params[] = $tgl_sampai; }
+if ($cari !== '')       { $where .= ' AND u.nama LIKE ?';                      $params[] = "%$cari%"; }
+if ($status !== '')     { $where .= ' AND j.status_verifikasi = BINARY ?';     $params[] = $status; }
+if ($tgl_dari !== '')   { $where .= ' AND j.tanggal >= ?';                     $params[] = $tgl_dari; }
+if ($tgl_sampai !== '') { $where .= ' AND j.tanggal <= ?';                     $params[] = $tgl_sampai; }
 
 $stmt = $db->prepare("SELECT COUNT(*) FROM jurnal_harian j JOIN siswa s ON j.siswa_id=s.id JOIN users u ON s.user_id=u.id $where");
 $stmt->execute($params);
@@ -79,9 +82,9 @@ require_once __DIR__ . '/../../includes/header.php';
       <div class="col-6 col-md-2">
         <select name="status" class="form-select form-select-sm">
           <option value="">Semua Status</option>
-          <option value="menunggu"     <?= $status==='menunggu'     ?'selected':'' ?>>Menunggu</option>
-          <option value="diverifikasi" <?= $status==='diverifikasi' ?'selected':'' ?>>Diverifikasi</option>
-          <option value="ditolak"      <?= $status==='ditolak'      ?'selected':'' ?>>Ditolak</option>
+          <option value="menunggu"     <?= $status==='menunggu'     ? 'selected' : '' ?>>Menunggu</option>
+          <option value="diverifikasi" <?= $status==='diverifikasi' ? 'selected' : '' ?>>Diverifikasi</option>
+          <option value="ditolak"      <?= $status==='ditolak'      ? 'selected' : '' ?>>Ditolak</option>
         </select>
       </div>
       <div class="col-6 col-md-2">

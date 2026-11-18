@@ -1,7 +1,7 @@
 # ── Keamanan dasar Apache ──
 
 # Redirect ke 404 jika halaman tidak ditemukan
-ErrorDocument 404 /Monitoring-PKL/404.php
+ErrorDocument 404 /404.php
 
 # Sembunyikan versi Apache & PHP
 ServerSignature Off
