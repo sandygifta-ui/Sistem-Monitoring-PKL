@@ -67,7 +67,7 @@ Berikut beberapa tampilan antarmuka SIMONA.
 
 Halaman awal untuk pengguna masuk ke aplikasi menggunakan akun masing-masing.
 
-![Halaman Login](docs/screenshots/login.png)
+![Halaman Login](assets/screenshots/login.png)
 
 ### 2. Dashboard Admin
 
