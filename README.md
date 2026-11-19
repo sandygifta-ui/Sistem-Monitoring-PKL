@@ -19,114 +19,97 @@
   </a>
 </p>
 
-\<p align="center">
-&#x20; \<b>Sistem Informasi Monitoring Praktik Kerja Lapangan Siswa SMK\</b>
-&#x20; \<br>
-&#x20; Platform digital untuk monitoring kegiatan, verifikasi jurnal, dan pengelolaan nilai Praktik Kerja Lapangan (PKL).
-\</p>
-
-\<p align="center">
-&#x20; \<a href="[https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php](https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php)">
-&#x20;   \<strong>🚀 KUNJUNGI WEBSITE SIMONA\</strong>
-&#x20; \</a>
-\</p>
-
 ---
 
 ## 📖 Tentang SIMONA
 
 **SIMONA (Sistem Monitoring dan Nilai PKL)** merupakan aplikasi berbasis web yang dikembangkan untuk membantu proses monitoring dan penilaian kegiatan Praktik Kerja Lapangan (PKL) siswa SMK.
 
-Aplikasi ini dirancang untuk mempermudah komunikasi dan pengelolaan aktivitas antara siswa dan guru pembimbing melalui sistem digital yang terstruktur.
+Aplikasi ini mempermudah komunikasi dan pengelolaan aktivitas antara siswa dan guru pembimbing melalui sistem digital yang terstruktur.
 
-Dengan SIMONA, siswa dapat mencatat kegiatan harian selama PKL, sedangkan guru pembimbing dapat memantau, memverifikasi jurnal, memberikan catatan, serta mengelola penilaian siswa.
-
-SIMONA memiliki dua hak akses utama, yaitu:
+SIMONA memiliki dua hak akses utama:
 
 - **Admin (Guru Pembimbing):** Mengelola data siswa, memverifikasi jurnal, memberikan nilai, dan mengelola laporan.
 - **Siswa:** Mengelola jurnal harian, memantau status verifikasi, dan melihat hasil penilaian PKL.
 
-## 🌍 Live Website
-
-Aplikasi SIMONA telah di-deploy dan dapat diakses secara online melalui alamat berikut:
-
-| Informasi     | Keterangan                                                                                                                    |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Nama Aplikasi | SIMONA                                                                                                                        |
-| Platform      | Web Application                                                                                                               |
-| Deployment    | Microsoft Azure                                                                                                               |
-| URL Website   | [simona-monitoring.malaysiawest.cloudapp.azure.com](https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php) |
-| Halaman Login | [Buka Login SIMONA](https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php)                                 |
-
 ## ✨ Fitur Aplikasi
 
-### 👨‍🏫 1. Admin (Guru Pembimbing)
+### 👨‍🏫 Admin (Guru Pembimbing)
 
-- **Dashboard Admin:** Menampilkan ringkasan statistik siswa, jurnal pending, dan informasi penilaian.
-- **Manajemen Data Siswa:** Menambah, mengedit, menghapus, mencari, dan mengelola data siswa.
-- **Verifikasi Jurnal:** Menyetujui atau menolak jurnal harian siswa.
-- **Catatan Guru:** Memberikan catatan atau masukan terhadap jurnal siswa.
-- **Manajemen Nilai:** Menginput dan mengedit nilai berdasarkan empat aspek penilaian:
-  - Kedisiplinan
-  - Kompetensi
-  - Sikap
-  - Kerja Sama
-- **Laporan PKL:** Melihat rekap penilaian siswa.
-- **Export CSV:** Mengunduh laporan dalam format CSV.
-- **Cetak Laporan:** Mencetak hasil rekap data siswa dan penilaian.
-- **Manajemen Akun:** Mengelola akun pengguna sesuai hak akses.
+- Dashboard statistik siswa dan jurnal.
+- Manajemen data siswa.
+- Verifikasi jurnal harian.
+- Memberikan catatan atau masukan pada jurnal.
+- Input dan edit nilai siswa.
+- Rekap laporan PKL.
+- Export laporan dalam format CSV.
+- Cetak laporan.
+- Manajemen akun pengguna.
 
-### 🎓 2. Siswa
+### 🎓 Siswa
 
-- **Dashboard Siswa:** Menampilkan informasi PKL, statistik jurnal, dan nilai rata-rata.
-- **Jurnal Harian:** Menambah, melihat, mengedit, dan menghapus jurnal kegiatan PKL.
-- **Status Verifikasi:** Melihat status jurnal yang telah dikirim.
-- **Catatan Guru:** Membaca catatan dan masukan dari guru pembimbing.
-- **Informasi Nilai:** Melihat nilai berdasarkan aspek penilaian.
-- **Predikat Nilai:** Menampilkan predikat A/B/C/D.
-- **Proteksi Jurnal:** Jurnal yang telah diverifikasi tidak dapat diedit kembali.
+- Dashboard informasi PKL.
+- Menambah, melihat, mengedit, dan menghapus jurnal harian.
+- Melihat status verifikasi jurnal.
+- Membaca catatan guru pembimbing.
+- Melihat hasil penilaian PKL.
+- Melihat predikat nilai A/B/C/D.
+
+---
+
+## 📸 Tampilan Aplikasi
+
+Berikut beberapa tampilan antarmuka SIMONA.
+
+> Simpan screenshot aplikasi di folder `docs/screenshots/`, kemudian sesuaikan nama file gambar dengan file yang kamu miliki.
+
+### 1. Halaman Login
+
+Halaman awal untuk pengguna masuk ke aplikasi menggunakan akun masing-masing.
+
+![Halaman Login](docs/screenshots/login.png)
+
+### 2. Dashboard Admin
+
+Menampilkan ringkasan informasi dan menu pengelolaan PKL untuk guru pembimbing.
+
+![Dashboard Admin](docs/screenshots/dashboard-admin.png)
+
+### 3. Dashboard Siswa
+
+Menampilkan informasi PKL, jurnal kegiatan, dan nilai siswa.
+
+![Dashboard Siswa](docs/screenshots/dashboard-siswa.png)
+
+### 4. Monitoring dan Verifikasi Jurnal
+
+Halaman untuk melihat, memeriksa, serta memverifikasi jurnal kegiatan siswa.
+
+![Monitoring Jurnal](docs/screenshots/monitoring-jurnal.png)
+
+### 5. Pengelolaan Nilai PKL
+
+Halaman untuk memasukkan, mengubah, dan melihat hasil penilaian siswa.
+
+![Pengelolaan Nilai](docs/screenshots/pengelolaan-nilai.png)
+
+---
 
 ## 🛠️ Teknologi yang Digunakan
 
-| Komponen          | Teknologi       |
-| ----------------- | --------------- |
-| Backend           | PHP 8.x Native  |
-| Database          | MySQL / MariaDB |
-| Frontend          | HTML, CSS       |
-| Framework CSS     | Bootstrap 5     |
-| Icons             | Bootstrap Icons |
-| Database Access   | PDO             |
-| Local Development | XAMPP           |
-| Web Server        | Apache          |
-| Deployment        | Microsoft Azure |
+| Komponen | Teknologi |
+|---|---|
+| Backend | PHP 8.x Native |
+| Database | MySQL / MariaDB |
+| Frontend | HTML, CSS |
+| Framework CSS | Bootstrap 5 |
+| Icons | Bootstrap Icons |
+| Database Access | PDO |
+| Local Development | XAMPP |
+| Web Server | Apache |
+| Deployment | Microsoft Azure |
 
-## 🏗️ Arsitektur Aplikasi
-
-SIMONA menggunakan arsitektur aplikasi berbasis web dengan pembagian akses berdasarkan peran pengguna.
-
-```text
-                    SIMONA
-                       |
-                Halaman Login
-                       |
-                Autentikasi User
-                       |
-             +---------+---------+
-             |                   |
-          ADMIN                SISWA
-             |                   |
-       Dashboard Admin     Dashboard Siswa
-             |                   |
-       Kelola Data Siswa   Kelola Jurnal
-       Verifikasi Jurnal   Lihat Status
-       Input Nilai        Lihat Nilai
-       Laporan PKL             |
-             |                 |
-             +--------+--------+
-                      |
-                  Database
-                    MySQL
-```
+---
 
 ## 📂 Struktur Folder
 
@@ -134,147 +117,85 @@ SIMONA menggunakan arsitektur aplikasi berbasis web dengan pembagian akses berda
 Monitoring-PKL/
 │
 ├── admin/
-│   ├── akun/              # Manajemen akun guru
-│   ├── jurnal/            # Verifikasi jurnal siswa
-│   ├── laporan/           # Rekap dan export laporan
-│   ├── nilai/             # Manajemen nilai siswa
-│   ├── siswa/             # Manajemen data siswa
-│   └── dashboard.php      # Dashboard admin
+│   ├── akun/
+│   ├── jurnal/
+│   ├── laporan/
+│   ├── nilai/
+│   ├── siswa/
+│   └── dashboard.php
 │
 ├── siswa/
-│   ├── jurnal/            # Manajemen jurnal harian
-│   ├── nilai/             # Informasi nilai siswa
-│   └── dashboard.php      # Dashboard siswa
+│   ├── jurnal/
+│   ├── nilai/
+│   └── dashboard.php
 │
-├── auth/                  # Login dan logout
-├── config/                # Konfigurasi aplikasi dan database
-├── database/              # File SQL database
-├── includes/              # Helper, auth, CSRF, dan fungsi
+├── auth/
+├── config/
+├── database/
+├── includes/
 │
-└── index.php              # Halaman utama / redirect login
+└── index.php
 ```
 
-## 🗄️ Database dan ERD
+---
 
-Database SIMONA menggunakan MySQL atau MariaDB dengan beberapa tabel utama yang saling terhubung.
+## 🚀 Panduan Instalasi
 
-### Entitas Database
+Ikuti langkah-langkah berikut untuk menjalankan SIMONA di komputer lokal menggunakan XAMPP.
 
-| Tabel           | Fungsi                                 |
-| --------------- | -------------------------------------- |
-| `users`         | Menyimpan data akun pengguna           |
-| `siswa`         | Menyimpan informasi siswa dan data PKL |
-| `jurnal_harian` | Menyimpan aktivitas harian siswa       |
-| `nilai`         | Menyimpan hasil penilaian PKL          |
+### 1. Persiapan
 
-### Entity Relationship Diagram
+Pastikan perangkat sudah memiliki:
 
-```mermaid
-erDiagram
-    users {
-        int id PK
-        varchar nama
-        varchar username UK
-        varchar password
-        enum role
-        timestamp created_at
-    }
+- XAMPP.
+- Git.
+- Browser.
+- Code editor, seperti Visual Studio Code.
 
-    siswa {
-        int id PK
-        int user_id FK
-        varchar nis UK
-        varchar kelas
-        varchar tempat_pkl
-        varchar alamat_pkl
-        varchar nama_pembimbing_industri
-        varchar no_hp_pembimbing_industri
-        int guru_pembimbing_id FK
-        date tgl_mulai
-        date tgl_selesai
-    }
+### 2. Clone Repository
 
-    jurnal_harian {
-        int id PK
-        int siswa_id FK
-        date tanggal
-        text kegiatan
-        text kendala
-        enum status_verifikasi
-        text catatan_admin
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    nilai {
-        int id PK
-        int siswa_id FK
-        varchar aspek_penilaian
-        tinyint nilai
-        date tanggal_input
-        int diberikan_oleh FK
-    }
-
-    users ||--o{ siswa : "akun siswa"
-    users ||--o{ siswa : "guru pembimbing"
-    users ||--o{ nilai : "memberikan"
-    siswa ||--o{ jurnal_harian : "menulis"
-    siswa ||--o{ nilai : "mendapat"
-```
-
-## 🔐 Keamanan Sistem
-
-SIMONA menerapkan beberapa mekanisme keamanan untuk membantu menjaga keamanan data pengguna dan aktivitas aplikasi.
-
-- **PDO Prepared Statements:** Membantu mencegah SQL Injection.
-- **Password Hashing:** Password pengguna disimpan dalam bentuk hash.
-- **CSRF Token:** Memberikan perlindungan terhadap serangan Cross-Site Request Forgery.
-- **Session Protection:** Mengelola autentikasi dan sesi pengguna.
-- **Role-Based Access:** Membatasi akses fitur berdasarkan hak akses Admin dan Siswa.
-
-## 🚀 Instalasi Lokal (XAMPP)
-
-Jika ingin menjalankan SIMONA di lingkungan lokal, ikuti langkah berikut.
-
-### 1. Clone Repository
+Buka terminal atau Command Prompt, kemudian jalankan:
 
 ```bash
 git clone https://github.com/sandygifta-ui/Sistem-Monitoring-PKL.git Monitoring-PKL
 ```
 
-Pindahkan folder proyek ke direktori:
+### 3. Pindahkan Folder Project
+
+Pastikan folder `Monitoring-PKL` berada di:
 
 ```text
 C:/xampp/htdocs/
 ```
 
-### 2. Konfigurasi Database
+### 4. Konfigurasi Database
 
-Salin file konfigurasi database:
+Buka folder project melalui Visual Studio Code.
 
-```bash
-cp config/database.example.php config/database.php
-```
-
-Sesuaikan konfigurasi database pada `config/database.php` dengan pengaturan MySQL lokal.
-
-### 3. Import Database
-
-1. Jalankan Apache dan MySQL melalui XAMPP.
-2. Buka `http://localhost/phpmyadmin`.
-3. Pilih menu **Import**.
-4. Pilih file `database/monitoring_pkl.sql`.
-5. Klik **Go**.
-
-### 4. Reset Password Akun Demo
-
-Jalankan proses reset password satu kali jika diperlukan:
+Salin file:
 
 ```text
-http://localhost/Monitoring-PKL/database/reset_password.php
+config/database.example.php
 ```
 
-### 5. Jalankan Aplikasi
+Kemudian ubah nama salinannya menjadi:
+
+```text
+config/database.php
+```
+
+Sesuaikan konfigurasi koneksi database dengan pengaturan MySQL lokal.
+
+### 5. Import Database
+
+1. Buka XAMPP Control Panel.
+2. Jalankan Apache dan MySQL.
+3. Buka browser dan akses `http://localhost/phpmyadmin`.
+4. Pilih menu **Import**.
+5. Pilih file `database/monitoring_pkl.sql`.
+6. Klik **Go** untuk memulai proses import.
+
+### 6. Jalankan Aplikasi
 
 Buka browser dan akses:
 
@@ -282,33 +203,146 @@ Buka browser dan akses:
 http://localhost/Monitoring-PKL
 ```
 
-## ☁️ Deployment
+Aplikasi SIMONA siap digunakan setelah konfigurasi database berhasil.
 
-SIMONA telah di-deploy menggunakan layanan **Microsoft Azure** sehingga aplikasi dapat diakses melalui jaringan internet.
+---
 
-Alamat website:
+## 📚 Panduan Penggunaan
 
-```text
-https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php
+### A. Admin (Guru Pembimbing)
+
+**1. Login**
+
+- Buka halaman login SIMONA.
+- Masukkan username dan password Admin.
+- Klik tombol Login.
+
+**2. Dashboard Admin**
+
+Setelah berhasil login, Admin akan diarahkan ke dashboard yang menampilkan ringkasan informasi siswa, jurnal, dan penilaian.
+
+**3. Mengelola Data Siswa**
+
+- Buka menu Data Siswa.
+- Tambahkan data siswa baru jika diperlukan.
+- Edit atau hapus data siswa melalui menu yang tersedia.
+
+**4. Monitoring dan Verifikasi Jurnal**
+
+- Buka menu Jurnal.
+- Pilih jurnal siswa yang ingin diperiksa.
+- Periksa kegiatan yang telah dikirim.
+- Berikan catatan jika diperlukan.
+- Setujui atau tolak jurnal sesuai hasil pemeriksaan.
+
+**5. Mengelola Nilai PKL**
+
+- Buka menu Nilai.
+- Pilih siswa yang akan diberikan penilaian.
+- Masukkan nilai berdasarkan aspek penilaian:
+  - Kedisiplinan
+  - Kompetensi
+  - Sikap
+  - Kerja Sama
+- Simpan nilai.
+
+**6. Mengelola Laporan**
+
+- Buka menu Laporan.
+- Lihat rekap penilaian siswa.
+- Gunakan fitur Export CSV atau Cetak Laporan jika diperlukan.
+
+### B. Siswa
+
+**1. Login**
+
+- Buka halaman login SIMONA.
+- Masukkan username dan password siswa.
+- Klik tombol Login.
+
+**2. Dashboard Siswa**
+
+Setelah berhasil login, siswa akan diarahkan ke dashboard yang menampilkan informasi PKL, statistik jurnal, dan nilai rata-rata.
+
+**3. Mengelola Jurnal Harian**
+
+- Buka menu Jurnal.
+- Tambahkan jurnal kegiatan PKL.
+- Isi tanggal, kegiatan, dan kendala.
+- Simpan jurnal yang telah dibuat.
+
+**4. Memantau Status Verifikasi**
+
+- Buka daftar jurnal.
+- Periksa status verifikasi jurnal.
+- Baca catatan atau masukan dari guru pembimbing jika tersedia.
+
+**5. Melihat Nilai PKL**
+
+- Buka menu Nilai.
+- Lihat hasil penilaian berdasarkan aspek yang diberikan guru pembimbing.
+- Periksa predikat nilai yang ditampilkan.
+
+**6. Logout**
+
+Klik tombol Logout untuk keluar dari akun SIMONA.
+
+---
+
+## 🗄️ Database dan ERD
+
+SIMONA menggunakan MySQL atau MariaDB dengan beberapa tabel utama:
+
+| Tabel | Fungsi |
+|---|---|
+| `users` | Menyimpan data akun pengguna |
+| `siswa` | Menyimpan informasi siswa dan data PKL |
+| `jurnal_harian` | Menyimpan aktivitas harian siswa |
+| `nilai` | Menyimpan hasil penilaian PKL |
+
+### Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    users ||--o{ siswa : "akun siswa"
+    users ||--o{ nilai : "memberikan"
+    siswa ||--o{ jurnal_harian : "menulis"
+    siswa ||--o{ nilai : "mendapat"
 ```
 
-Untuk melakukan deployment ulang, sesuaikan konfigurasi aplikasi dengan lingkungan server yang digunakan, termasuk:
+---
 
-- Konfigurasi koneksi database.
-- Versi PHP yang didukung server.
-- Konfigurasi URL aplikasi.
-- Pengaturan web server.
-- Keamanan file konfigurasi dan kredensial.
+## 🔐 Keamanan Sistem
+
+SIMONA menerapkan beberapa mekanisme keamanan:
+
+- **PDO Prepared Statements:** Membantu mencegah SQL Injection.
+- **Password Hashing:** Menyimpan password dalam bentuk hash.
+- **CSRF Token:** Memberikan perlindungan terhadap Cross-Site Request Forgery.
+- **Session Protection:** Mengelola autentikasi dan sesi pengguna.
+- **Role-Based Access:** Membatasi akses fitur berdasarkan hak akses Admin dan Siswa.
+
+---
+
+## ☁️ Deployment
+
+SIMONA telah di-deploy menggunakan layanan **Microsoft Azure** sehingga dapat diakses melalui internet.
+
+**Website SIMONA:**
+
+https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php
+
+---
 
 ## 🎯 Tujuan Pengembangan
 
-SIMONA dikembangkan dengan tujuan:
-
 1. Mempermudah monitoring kegiatan PKL siswa.
-2. Membantu guru pembimbing dalam memverifikasi jurnal harian.
+2. Membantu guru pembimbing memverifikasi jurnal harian.
 3. Mempermudah pengelolaan nilai PKL siswa.
 4. Menyediakan laporan penilaian secara terstruktur.
 5. Mendukung digitalisasi administrasi kegiatan PKL.
+
+---
 
 ## 👨‍💻 Developer
 
@@ -316,4 +350,12 @@ SIMONA dikembangkan dengan tujuan:
 
 Dikembangkan sebagai proyek Uji Kompetensi Keahlian (UKK) siswa SMK.
 
-\<p align="center">   \<b>Built with ❤️ using PHP, MySQL, and Bootstrap 5\</b>   \<br>\<br>   \<a href="[https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php](https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php)">     🌐 Visit SIMONA Website   \</a>   \<br>\<br>   \<sub>© 2026 SIMONA. All Rights Reserved.\</sub> \</p>
+<p align="center">
+  <b>Built with ❤️ using PHP, MySQL, and Bootstrap 5</b>
+  <br><br>
+  <a href="https://simona-monitoring.malaysiawest.cloudapp.azure.com/auth/login.php">
+    🌐 Visit SIMONA Website
+  </a>
+  <br><br>
+  <sub>© 2026 SIMONA. All Rights Reserved.</sub>
+</p>
