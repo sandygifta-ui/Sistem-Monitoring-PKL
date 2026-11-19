@@ -61,8 +61,6 @@ SIMONA memiliki dua hak akses utama:
 
 Berikut beberapa tampilan antarmuka SIMONA.
 
-> Simpan screenshot aplikasi di folder `assets/screenshots/`, kemudian sesuaikan nama file gambar dengan file yang kamu miliki.
-
 ### 1. Halaman Login
 
 Halaman awal untuk pengguna masuk ke aplikasi menggunakan akun masing-masing.
