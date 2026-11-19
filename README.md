@@ -61,7 +61,7 @@ SIMONA memiliki dua hak akses utama:
 
 Berikut beberapa tampilan antarmuka SIMONA.
 
-> Simpan screenshot aplikasi di folder `docs/screenshots/`, kemudian sesuaikan nama file gambar dengan file yang kamu miliki.
+> Simpan screenshot aplikasi di folder `assets/screenshots/`, kemudian sesuaikan nama file gambar dengan file yang kamu miliki.
 
 ### 1. Halaman Login
 
@@ -73,25 +73,25 @@ Halaman awal untuk pengguna masuk ke aplikasi menggunakan akun masing-masing.
 
 Menampilkan ringkasan informasi dan menu pengelolaan PKL untuk guru pembimbing.
 
-![Dashboard Admin](docs/screenshots/dashboard-admin.png)
+![Dashboard Admin](assets/screenshots/dashboard-admin.png)
 
 ### 3. Dashboard Siswa
 
 Menampilkan informasi PKL, jurnal kegiatan, dan nilai siswa.
 
-![Dashboard Siswa](docs/screenshots/dashboard-siswa.png)
+![Dashboard Siswa](assets/screenshots/dashboard-siswa.png)
 
 ### 4. Monitoring dan Verifikasi Jurnal
 
 Halaman untuk melihat, memeriksa, serta memverifikasi jurnal kegiatan siswa.
 
-![Monitoring Jurnal](docs/screenshots/monitoring-jurnal.png)
+![Monitoring Jurnal](assets/screenshots/monitoring-jurnal.png)
 
 ### 5. Pengelolaan Nilai PKL
 
 Halaman untuk memasukkan, mengubah, dan melihat hasil penilaian siswa.
 
-![Pengelolaan Nilai](docs/screenshots/pengelolaan-nilai.png)
+![Pengelolaan Nilai](assets/screenshots/pengelolaan-nilai.png)
 
 ---
 
